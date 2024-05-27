@@ -9,6 +9,11 @@
 #include <stdio.h>
 #include "libft/libft.h"
 
+typedef struct s_parse
+{
+	char	**file;
+}			t_parse;
+
 typedef struct s_param
 {
 	char	*tex_N;
@@ -18,9 +23,8 @@ typedef struct s_param
 	int 	color_F;
 	int		color_C;
 	char	**map;
+	char	**file;
 }			t_param;
-
-
 
 char	*get_next_line(int fd);
 int		check_file(int fd);
