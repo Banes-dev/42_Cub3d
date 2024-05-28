@@ -1,4 +1,12 @@
-#include "../cub3d.h"
+#include "cub3d.h"
+
+void	game(t_param *param)
+{
+	(void)param;
+    t_game_instance game_init;
+    ft_init_window(&game_init);
+	mlx_loop(game_init.mlx_ptr);
+}
 
 int usage()
 {

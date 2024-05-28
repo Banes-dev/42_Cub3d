@@ -6,11 +6,11 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:19:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/27 15:51:10 by mminet           ###   ########.fr       */
+/*   Updated: 2024/05/28 18:45:58 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
 static char	*get_line(char *left)
 {

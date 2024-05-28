@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mminet <mminet@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/22 23:37:52 by mminet            #+#    #+#              #
-#    Updated: 2024/05/27 20:56:27 by mminet           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 SRCS_L =	libft/ft_atoi.c\
 			libft/ft_bzero.c\
 			libft/ft_calloc.c\
@@ -55,50 +43,57 @@ SRCS_L =	libft/ft_atoi.c\
 			libft/ft_tolower.c\
 			libft/ft_toupper.c\
 
-SRCS =	srcs/cub3d.c\
-		srcs/get_next_line.c\
-		srcs/parsing.c\
-
-LIB_MLX = minilibx-linux/libmlx_Linux.a
-
-NAME = cub3d
+CC = cc
 
 LIBFT = ./libft/libft.a
-
-CC = gcc 
-
-FLAGS = -Wall -Wextra -Werror -lXext -lX11 -lm -lz
-
-OBJ = $(patsubst srcs/%.c, obj/%.o, $(SRCS))
-
-HEADER=	cub3d.h
-
 HEADER_LIB = libft/libft.h
 
-all: $(NAME)
+CFLAGS = -g -Wall -Wextra -Werror
 
-$(OBJ): ${HEADER} $(HEADER_LIB)
+# Normal
+NAME = cub3d
+FUNC = cub3d.c error.c exit.c game.c cub3d_utils.c get_next_line.c parsing.c parsing_map.c parsing_utils.c
+OBJS = ${FUNC:.c=.o}
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(OBJ) $(LIBFT) $(LIB_MLX) $(FLAGS) -o $(NAME)
+# Bonus
+NAME_BONUS = cub3d_bonus
+FUNC_BONUS = src_bonus/cub3d.c
+OBJS_BONUS = ${FUNC_BONUS:.c=.o}
 
+# Mlx
+MLX_PATH = ./mlx/
+MLX_FLAGS = -lmlx -lmlx_Linux -lX11 -lXext -lm
+
+# Compil
+all: 	${NAME}
+
+${NAME}: $(LIBFT) ${OBJS}
+	make -C $(MLX_PATH) --no-print-directory
+	${CC} ${CFLAGS} ${OBJS} $(LIBFT) -o ${NAME} -L$(MLX_PATH) $(MLX_FLAGS)
+
+bonus: 	${NAME_BONUS}
+
+#Libft
 $(LIBFT): $(HEADER_LIB) $(SRCS_L)
 	@echo "\n==> Making LIBFT"
 	make -C ./libft
 
-obj/%.o: srcs/%.c
-	@mkdir -p obj
-	$(CC) $(FLAGS) -c $< -o $@
+${NAME_BONUS}: ${OBJS_BONUS}
+	make -C $(MLX_PATH) --no-print-directory
+	${CC} ${CFLAGS} ${OBJS_BONUS} -o ${NAME_BONUS} -L$(MLX_PATH) $(MLX_FLAGS)
 
-norme:
-	norminette *.c *.h
+clean:	
+	rm -f ${OBJS}
+	rm -f ${OBJS_BONUS}
+	@make -C ./libft clean
+	@make clean -C ${MLX_PATH} --no-print-directory
 
-clean:
-	rm -rf obj
-	make -C ./libft clean
+fclean:	clean
+	rm -f ${NAME}
+	rm -f ${NAME_BONUS}
+	@make -C ./libft fclean
+	@make clean -C ${MLX_PATH} --no-print-directory
 
-fclean: clean
-	rm -rf $(NAME)
-	make -C ./libft fclean
+re:	fclean all
 
-re: fclean all
+.PHONY: all clean fclean re bonus
