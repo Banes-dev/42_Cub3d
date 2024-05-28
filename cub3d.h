@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include "libft/libft.h"
+# include "minilibx-linux/mlx.h"
 
 typedef struct s_parse
 {
@@ -19,7 +20,7 @@ typedef struct s_param
 	char	*tex_N;
 	char	*tex_S;
 	char	*tex_E;
-	char	*tex_O;
+	char	*tex_W;
 	int 	color_F;
 	int		color_C;
 	char	**map;

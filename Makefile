@@ -6,7 +6,7 @@
 #    By: mminet <mminet@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 23:37:52 by mminet            #+#    #+#              #
-#    Updated: 2024/05/27 15:22:49 by mminet           ###   ########.fr        #
+#    Updated: 2024/05/27 20:56:27 by mminet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,13 +59,15 @@ SRCS =	srcs/cub3d.c\
 		srcs/get_next_line.c\
 		srcs/parsing.c\
 
+LIB_MLX = minilibx-linux/libmlx_Linux.a
+
 NAME = cub3d
 
 LIBFT = ./libft/libft.a
 
 CC = gcc 
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -lXext -lX11 -lm -lz
 
 OBJ = $(patsubst srcs/%.c, obj/%.o, $(SRCS))
 
@@ -78,7 +80,7 @@ all: $(NAME)
 $(OBJ): ${HEADER} $(HEADER_LIB)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(OBJ) $(LIBFT) $(FLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) $(LIB_MLX) $(FLAGS) -o $(NAME)
 
 $(LIBFT): $(HEADER_LIB) $(SRCS_L)
 	@echo "\n==> Making LIBFT"
