@@ -53,7 +53,7 @@ CFLAGS = -g -Wall -Wextra -Werror
 # Normal
 NAME = cub3d
 FUNC = cub3d.c error.c exit.c game.c cub3d_utils.c get_next_line.c parsing.c parsing_map.c parsing_utils.c
-OBJS = ${FUNC:.c=.o}
+OBJS = $(patsubst %.c, obj/%.o, $(FUNC))
 
 # Bonus
 NAME_BONUS = cub3d_bonus
@@ -81,6 +81,10 @@ $(LIBFT): $(HEADER_LIB) $(SRCS_L)
 ${NAME_BONUS}: ${OBJS_BONUS}
 	make -C $(MLX_PATH) --no-print-directory
 	${CC} ${CFLAGS} ${OBJS_BONUS} -o ${NAME_BONUS} -L$(MLX_PATH) $(MLX_FLAGS)
+
+obj/%.o: %.c
+	@mkdir -p obj
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:	
 	rm -f ${OBJS}

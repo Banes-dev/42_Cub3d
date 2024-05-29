@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:55:44 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/28 18:45:45 by mminet           ###   ########.fr       */
+/*   Updated: 2024/05/29 17:18:52 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_color(char *str, t_param *param)
 	if (!str[i] || str[i++] != ',')
 		map_example(param, "error: syntax4\n");
 	if (!ft_isdigit(str[i])|| ft_atoi(str + i) > 255)
-		map_example(param, "error: syntax5\n");
+		map_example(param, "error: not r,g,b color\n");
 	while(ft_isdigit(str[i]))
 		i++;
 	if (str[i])
