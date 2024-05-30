@@ -72,10 +72,17 @@ typedef struct s_game_resolutions
 }	t_game_resolutions;
 
 // MAIN GAME CONTROLLER
+// MAIN GAME CONTROLLER
 typedef struct s_game_instance
 {
 	void				*mlx_ptr;
 	void				*win_ptr;
+	double				player_x;
+	double				player_y;
+	double				vector_x;
+	double				vector_y;
+	double				camera_x;
+	double				camera_y;
 	t_game_resolutions	resolutions_init;
 }	t_game_instance;
 
