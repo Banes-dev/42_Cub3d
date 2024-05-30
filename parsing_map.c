@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:09:08 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/28 18:45:42 by mminet           ###   ########.fr       */
+/*   Updated: 2024/05/30 12:57:09 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ void	check_input(t_param *param, int i, int j, char **map)
 		if (ft_strchr("NSEW", map[i][j]))
 		{
 			if (param->dir != -1)
-				map_example(param, "error: double player\n");
+				map_example(param, "double player");
 			param->dir = map[i][j];
 			param->posx = j;
 			param->posy = i;
 		}
 		if (i == 0 || j == 0 || !map[i][j + 1] || !map[i + 1] || j > (int)ft_strlen(map[i + 1]) - 1 || j > (int)ft_strlen(map[i - 1]) - 1)
-			map_example(param, "error: map ouverte\n");
+			map_example(param, "map ouverte");
 		if (map[i][j - 1] == ' ' || map[i][j + 1] == ' ' || map[i - 1][j] == ' ' || map[i + 1][j] == ' ')
-			map_example(param, "error: map ouverte\n");
+			map_example(param, "map ouverte");
 	}
 }
 
 void	parse_map(t_param *param)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -47,11 +47,11 @@ void	parse_map(t_param *param)
 			j++;
 		}
 		if (ft_strlen(param->map[i]) && param->map[i][j] != '\0')
-			map_example(param, "error: wrong map");
+			map_example(param, "wrong map");
 		i++;
 	}
 	if (param->dir == -1)
-		map_example(param, "error: no player\n");
+		map_example(param, "no player");
 }
 
 void	fill_map(t_param *param, t_list **lst)
@@ -78,15 +78,15 @@ void	fill_map(t_param *param, t_list **lst)
 
 void	check_map(t_param *param)
 {
-	t_list *map;
+	t_list	*map;
 	int		i;
-	
+
 	i = 0;
 	map = NULL;
 	while (param->file[i] && !ft_isdigit(param->file[i][0]) && !is_isspace(param->file[i][0]))
 		i++;
 	if (param->file[i] == NULL)
-		map_example(param, "error: no map\n");
+		map_example(param, "no map");
 	while (param->file[i] && (ft_isdigit(param->file[i][0]) || is_isspace(param->file[i][0])))
 	{
 		ft_lstadd_back(&map, ft_lstnew(ft_strdup(param->file[i])));
@@ -97,7 +97,7 @@ void	check_map(t_param *param)
 	if (param->file[i])
 	{
 		ft_lstclear(&map, simple_del);
-		map_example(param, "error: wrong map");
+		map_example(param, "wrong map");
 	}
 	else
 		fill_map(param, &map);

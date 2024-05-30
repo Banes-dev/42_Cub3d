@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:22:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/28 18:45:51 by mminet           ###   ########.fr       */
+/*   Updated: 2024/05/30 12:56:30 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,32 @@ void	get_texture(char *str, char **img, t_param *param)
 
 	i = 0;
 	if (*img)
-		map_example(param, "error: double texture\n");
+		map_example(param, "double texture");
 	if (!is_isspace(str[i]))
-		map_example(param, "error: syntax\n");
+		map_example(param, "syntax");
 	while (is_isspace(str[i]))
 		i++;
 	if (!str[i])
-		map_example(param, "error: syntax\n");
+		map_example(param, "syntax");
 	*img = ft_strdup(str + 1);
 }
 
 void	get_param(char *str, t_param *param)
 {
 	if (ft_strncmp(str, "NO", 2) == 0)
-		get_texture(str + 2, &param->tex_N, param);
+		get_texture(str + 2, &param->tex_n, param);
 	else if (ft_strncmp(str, "SO", 2) == 0)
-		get_texture(str + 2, &param->tex_S, param);
+		get_texture(str + 2, &param->tex_s, param);
 	else if (ft_strncmp(str, "WE", 2) == 0)
-		get_texture(str + 2, &param->tex_W, param);
+		get_texture(str + 2, &param->tex_w, param);
 	else if (ft_strncmp(str, "EA", 2) == 0)
-		get_texture(str + 2, &param->tex_E, param);
+		get_texture(str + 2, &param->tex_e, param);
 	else if (str[0] == 'C')
-		param->color_C = get_color(str + 1, param, str[0]);
+		param->color_c = get_color(str + 1, param, str[0]);
 	else if (str[0] == 'F')
-		param->color_F = get_color(str + 1, param, str[0]);
+		param->color_f = get_color(str + 1, param, str[0]);
 	else if (str[0])
-		map_example(param, "error: wrong param");
+		map_example(param, "wrong param");
 }
 
 int	check_param(t_param *param)
@@ -57,9 +57,9 @@ int	check_param(t_param *param)
 		get_param(param->file[i], param);
 		i++;
 	}
-	if (!param->tex_E || !param->tex_N || !param->tex_S || !param->tex_W
-		|| param->color_C == -1 || param->color_F == -1)
-		map_example(param, "error: miss param\n");
+	if (!param->tex_e || !param->tex_n || !param->tex_s || !param->tex_w
+		|| param->color_c == -1 || param->color_f == -1)
+		map_example(param, "miss param");
 	check_map(param);
 	return (0);
 }
@@ -92,26 +92,27 @@ char	**get_file(int fd)
 	ft_lstclear(&file_lst, simple_del);
 	return (file);
 }
+
 int	check_file(int fd)
 {
 	t_param	param;
 
 	param.map = NULL;
-	param.color_C = -1;
-	param.color_F = -1;
-	param.tex_E = NULL;
-	param.tex_N = NULL;
-	param.tex_W = NULL;
-	param.tex_S = NULL;
+	param.color_c = -1;
+	param.color_f = -1;
+	param.tex_e = NULL;
+	param.tex_n = NULL;
+	param.tex_w = NULL;
+	param.tex_s = NULL;
 	param.posx = -1;
 	param.posy = -1;
 	param.dir = -1;
 	param.file = get_file(fd);
 	check_param(&param);
 	free_tab(param.file);
-	free(param.tex_E);
-	free(param.tex_N);
-	free(param.tex_S);
-	free(param.tex_W);
+	free(param.tex_e);
+	free(param.tex_n);
+	free(param.tex_s);
+	free(param.tex_w);
 	return (0);
 }

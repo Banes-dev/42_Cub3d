@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/05/28 18:25:48 by mminet           ###   ########.fr       */
+/*   Updated: 2024/05/30 12:40:47 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,16 @@
 # define LEFT 65361
 # define RIGHT 65363
 
-
 // PARSING
 typedef struct s_param
 {
 	char	dir;
-	char	*tex_N;
-	char	*tex_S;
-	char	*tex_E;
-	char	*tex_W;
-	int 	color_F;
-	int		color_C;
+	char	*tex_n;
+	char	*tex_s;
+	char	*tex_e;
+	char	*tex_w;
+	int		color_f;
+	int		color_c;
 	int		posx;
 	int		posy;
 	char	**map;
@@ -88,13 +87,13 @@ void	ft_init_window(t_game_instance *game_init);
 ///// Parsing
 char	*get_next_line(int fd);
 int		check_file(int fd);
-void	map_example(t_param *param, char *str);
 int		is_isspace(char c);
 int		get_color(char *str, t_param *param, char c);
 void	check_map(t_param *param);
 
 // Error
 void	ft_error(int num_error);
+void	map_example(t_param *param, char *str);
 int		ft_exit_program(t_game_instance *game_init);
 
 //Utils
