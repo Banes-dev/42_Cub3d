@@ -6,7 +6,7 @@
 /*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/05/30 12:40:47 by ehay             ###   ########.fr       */
+/*   Updated: 2024/05/30 13:07:13 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ typedef struct s_game_instance
 
 ///////////
 ////// Functions
-void	game(t_param *param);
+void	game(t_param param);
 void	ft_init_window(t_game_instance *game_init);
 
 ///// Parsing
 char	*get_next_line(int fd);
-int		check_file(int fd);
+int		check_file(t_param	param, int fd);
 int		is_isspace(char c);
 int		get_color(char *str, t_param *param, char c);
 void	check_map(t_param *param);

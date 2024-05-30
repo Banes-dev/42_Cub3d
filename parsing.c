@@ -6,7 +6,7 @@
 /*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:22:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/30 12:56:30 by ehay             ###   ########.fr       */
+/*   Updated: 2024/05/30 13:03:57 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,8 @@ char	**get_file(int fd)
 	return (file);
 }
 
-int	check_file(int fd)
+int	check_file(t_param	param, int fd)
 {
-	t_param	param;
-
 	param.map = NULL;
 	param.color_c = -1;
 	param.color_f = -1;
