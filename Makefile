@@ -42,6 +42,7 @@ SRCS_L =	libft/ft_atoi.c\
 			libft/ft_substr.c\
 			libft/ft_tolower.c\
 			libft/ft_toupper.c\
+			libft/ft_tab_size.c\
 
 CC = cc
 
@@ -52,7 +53,7 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 # Normal
 NAME = cub3d
-FUNC = cub3d.c error.c exit.c game.c cub3d_utils.c get_next_line.c parsing.c parsing_map.c parsing_utils.c
+FUNC = cub3d.c error.c exit.c game.c cub3d_utils.c get_next_line.c parsing.c parsing_map.c parsing_utils.c minimap.c
 OBJS = $(patsubst %.c, obj/%.o, $(FUNC))
 
 # Bonus

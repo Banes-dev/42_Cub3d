@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:22:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/30 13:03:57 by ehay             ###   ########.fr       */
+/*   Updated: 2024/05/31 14:11:54 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,24 +93,24 @@ char	**get_file(int fd)
 	return (file);
 }
 
-int	check_file(t_param	param, int fd)
+int	check_file(t_param	*param, int fd)
 {
-	param.map = NULL;
-	param.color_c = -1;
-	param.color_f = -1;
-	param.tex_e = NULL;
-	param.tex_n = NULL;
-	param.tex_w = NULL;
-	param.tex_s = NULL;
-	param.posx = -1;
-	param.posy = -1;
-	param.dir = -1;
-	param.file = get_file(fd);
-	check_param(&param);
-	free_tab(param.file);
-	free(param.tex_e);
-	free(param.tex_n);
-	free(param.tex_s);
-	free(param.tex_w);
+	param->map = NULL;
+	param->color_c = -1;
+	param->color_f = -1;
+	param->tex_e = NULL;
+	param->tex_n = NULL;
+	param->tex_w = NULL;
+	param->tex_s = NULL;
+	param->posx = -1;
+	param->posy = -1;
+	param->dir = -1;
+	param->file = get_file(fd);
+	check_param(param);
+	free_tab(param->file);
+	free(param->tex_e);
+	free(param->tex_n);
+	free(param->tex_s);
+	free(param->tex_w);
 	return (0);
 }

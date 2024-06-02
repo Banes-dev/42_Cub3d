@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/05/30 13:07:13 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/02 17:36:09 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@
 # include "mlx/mlx.h"
 
 # define WINDOW_WIDTH 960
-# define WINDOW_HEIGHT 540
+# define WINDOW_HEIGHT 840
+# define MINIMAP_WIDTH WINDOW_WIDTH / 5
+# define MINIMAP_HEIGHT WINDOW_HEIGHT / 5
 
 # define ESPACE '0'
 # define WALL '1'
@@ -62,6 +64,16 @@ typedef struct s_param
 	char	**file;
 }			t_param;
 
+// IMAGE
+typedef struct s_img
+{
+	void		*img_ptr;
+	char		*data;
+	int			size_l;
+	int			bpp;
+	int			endian;
+}				t_img;
+
 // GAME RESOLUTIONS 
 typedef struct s_game_resolutions
 {
@@ -83,17 +95,24 @@ typedef struct s_game_instance
 	double				vector_y;
 	double				camera_x;
 	double				camera_y;
+	char				**map;
+	int					mv_up;
+	int					mv_down;
+	int					mv_left;
+	int 				mv_right;
+	t_img				miniMap;
 	t_game_resolutions	resolutions_init;
 }	t_game_instance;
 
 ///////////
 ////// Functions
-void	game(t_param param);
+void	game(t_param *param);
+void	refresh_minimap(t_game_instance *game);
 void	ft_init_window(t_game_instance *game_init);
 
 ///// Parsing
 char	*get_next_line(int fd);
-int		check_file(t_param	param, int fd);
+int		check_file(t_param	*param, int fd);
 int		is_isspace(char c);
 int		get_color(char *str, t_param *param, char c);
 void	check_map(t_param *param);
@@ -104,6 +123,7 @@ void	map_example(t_param *param, char *str);
 int		ft_exit_program(t_game_instance *game_init);
 
 //Utils
+void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	simple_del(void *del);
 void	free_tab(char **tab);
 

@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_utils.c                                      :+:      :+:    :+:   */
+/*   ft_tab_size.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 14:51:36 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/31 14:58:32 by mminet           ###   ########.fr       */
+/*   Created: 2024/05/31 15:02:36 by mminet            #+#    #+#             */
+/*   Updated: 2024/05/31 15:04:12 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
+int	ft_tab_size(char **tab)
 {
-	char	*dst;
+	int size;
 
-	dst = data->data + (y * data->size_l + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	simple_del(void *del)
-{
-	if (del)
-		free(del);
-}
-
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
+	size = 0;
 	if (!tab)
-		return ;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
+		return(0);
+	while (tab[size])
+		size++;
+	return (size);
 }

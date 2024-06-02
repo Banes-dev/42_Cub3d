@@ -3,22 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/05/30 13:31:37 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/02 17:33:52 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	game(t_param param)
+int game_loop(void *ptr)
 {
-	t_game_instance	game_init;
+	t_game_instance *game;
 
-	(void)param;
-	ft_init_window(&game_init);
-	mlx_loop(game_init.mlx_ptr);
+	game = (t_game_instance*)ptr;
+	if (game->mv_up && game->map[(int)(game->player_y - 0.3)][(int)game->player_x] != '1')
+		game->player_y -= 0.05;
+	if (game->mv_down && game->map[(int)(game->player_y + 0.3)][(int)game->player_x] != '1')
+		game->player_y += 0.05;
+	if (game->mv_left && game->map[(int)game->player_y][(int)(game->player_x - 0.3)] != '1')
+		game->player_x -= 0.05;
+	if (game->mv_right && game->map[(int)game->player_y][(int)(game->player_x + 0.3)] != '1')
+		game->player_x += 0.05;
+	refresh_minimap(game);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->miniMap.img_ptr, 0, WINDOW_HEIGHT - MINIMAP_HEIGHT);
+}
+
+void	game(t_param *param)
+{
+	t_game_instance	game;
+
+	game.map = param->map;
+	ft_init_window(&game);
+	game.mv_down = 0;
+	game.mv_up = 0;
+	game.mv_left = 0;
+	game.mv_right = 0;
+	game.player_x = (double)param->posx + 0.5;
+	game.player_y = (double)param->posy + 0.5;
+	game.miniMap.img_ptr = mlx_new_image(game.mlx_ptr, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	game.miniMap.data = mlx_get_data_addr(game.miniMap.img_ptr, &game.miniMap.bpp, &game.miniMap.size_l, &game.miniMap.endian);
+	mlx_loop_hook(game.mlx_ptr, game_loop, &game);
+	mlx_loop(game.mlx_ptr);
 }
 
 int	is_cub(char *str)
@@ -48,7 +74,7 @@ int	main(int ac, char **av)
 	fd_cub = open(av[1], O_RDONLY);
 	if (fd_cub == -1)
 		ft_error(3);
-	if (check_file(param, fd_cub))
+	if (check_file(&param, fd_cub))
 		ft_error(4);
-	game(param);
+	game(&param);
 }
