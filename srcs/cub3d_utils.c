@@ -6,11 +6,11 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:51:36 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/31 14:58:32 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/03 17:04:57 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {

@@ -6,11 +6,11 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:19:51 by ehay              #+#    #+#             */
-/*   Updated: 2024/05/31 17:03:07 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/03 14:53:37 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	ft_check_esc(int key, t_game_instance *game)
 {
@@ -19,7 +19,6 @@ int	ft_check_esc(int key, t_game_instance *game)
 		printf("\nGame ended, you are a noob.\n");
 		ft_exit_program(game);
 	}
-	printf("%d\n", key);
 	if (key == W)
 		game->mv_up = 1;
 	if (key == S)

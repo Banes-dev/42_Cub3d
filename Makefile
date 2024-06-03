@@ -53,8 +53,8 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 # Normal
 NAME = cub3d
-FUNC = cub3d.c error.c exit.c game.c cub3d_utils.c get_next_line.c parsing.c parsing_map.c parsing_utils.c minimap.c
-OBJS = $(patsubst %.c, obj/%.o, $(FUNC))
+FUNC = srcs/cub3d.c srcs/error.c srcs/exit.c srcs/game.c srcs/cub3d_utils.c srcs/get_next_line.c srcs/parsing.c srcs/parsing_map.c srcs/parsing_utils.c srcs/minimap.c
+OBJ = $(patsubst srcs/%.c, obj/%.o, $(FUNC))
 
 # Bonus
 NAME_BONUS = cub3d_bonus
@@ -63,14 +63,18 @@ OBJS_BONUS = ${FUNC_BONUS:.c=.o}
 
 # Mlx
 MLX_PATH = ./mlx/
-MLX_FLAGS = -lmlx -lmlx_Linux -lX11 -lXext -lm
+MLX_FLAGS = -lX11 -lXext
+MLX_LIB = mlx/libmlx_Linux.a
 
+HEADER =	cub3d.h
 # Compil
 all: 	${NAME}
 
-${NAME}: $(LIBFT) ${OBJS}
+$(OBJ): ${HEADER} $(HEADER_LIB)
+
+${NAME}: $(LIBFT) ${OBJ}
 	make -C $(MLX_PATH) --no-print-directory
-	${CC} ${CFLAGS} ${OBJS} $(LIBFT) -o ${NAME} -L$(MLX_PATH) $(MLX_FLAGS)
+	${CC} ${OBJ} $(LIBFT) $(MLX_LIB) $(CFLAGS) $(MLX_FLAGS) -o $(NAME)
 
 bonus: 	${NAME_BONUS}
 
@@ -83,12 +87,12 @@ ${NAME_BONUS}: ${OBJS_BONUS}
 	make -C $(MLX_PATH) --no-print-directory
 	${CC} ${CFLAGS} ${OBJS_BONUS} -o ${NAME_BONUS} -L$(MLX_PATH) $(MLX_FLAGS)
 
-obj/%.o: %.c
-	@mkdir -p obj
+obj/%.o: srcs/%.c
+	@mkdir -p obj/
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:	
-	rm -f ${OBJS}
+	rm -rf obj
 	rm -f ${OBJS_BONUS}
 	@make -C ./libft clean
 	@make clean -C ${MLX_PATH} --no-print-directory

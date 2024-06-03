@@ -6,11 +6,11 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:22:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/31 14:11:54 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/03 14:53:57 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	get_texture(char *str, char **img, t_param *param)
 {

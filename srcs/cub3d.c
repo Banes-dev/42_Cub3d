@@ -6,11 +6,11 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/02 17:33:52 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/03 14:53:25 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int game_loop(void *ptr)
 {
@@ -18,13 +18,13 @@ int game_loop(void *ptr)
 
 	game = (t_game_instance*)ptr;
 	if (game->mv_up && game->map[(int)(game->player_y - 0.3)][(int)game->player_x] != '1')
-		game->player_y -= 0.05;
+		game->player_y -= 0.01;
 	if (game->mv_down && game->map[(int)(game->player_y + 0.3)][(int)game->player_x] != '1')
-		game->player_y += 0.05;
+		game->player_y += 0.01;
 	if (game->mv_left && game->map[(int)game->player_y][(int)(game->player_x - 0.3)] != '1')
-		game->player_x -= 0.05;
+		game->player_x -= 0.01;
 	if (game->mv_right && game->map[(int)game->player_y][(int)(game->player_x + 0.3)] != '1')
-		game->player_x += 0.05;
+		game->player_x += 0.01;
 	refresh_minimap(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->miniMap.img_ptr, 0, WINDOW_HEIGHT - MINIMAP_HEIGHT);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:09:08 by mminet            #+#    #+#             */
-/*   Updated: 2024/05/30 12:57:09 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/03 14:53:49 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	check_input(t_param *param, int i, int j, char **map)
 {
