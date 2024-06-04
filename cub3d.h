@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/04 14:16:49 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/04 18:32:44 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@
 # include "fcntl.h" 		  // Read
 # include "string.h" 		  // fonction string
 # include "mlx/mlx.h"
+#include <math.h>
 
 # define WINDOW_WIDTH 960
 # define WINDOW_HEIGHT 840
-# define MINIMAP_WIDTH WINDOW_WIDTH / 5
+# define MINIMAP_WIDTH WINDOW_WIDTH / 5 
 # define MINIMAP_HEIGHT WINDOW_HEIGHT / 5
 
 # define ESPACE '0'
@@ -39,7 +40,8 @@
 # define SOUTH 'S'
 # define EAST 'E'
 # define WEST 'W'
-
+# define RS 0.01 // vitesse de rotation
+# define MS 0.01 // vitesse de deplacement 
 # define ESC 65307
 # define W 119
 # define A 97
@@ -84,7 +86,6 @@ typedef struct s_game_resolutions
 }	t_game_resolutions;
 
 // MAIN GAME CONTROLLER
-// MAIN GAME CONTROLLER
 typedef struct s_game_instance
 {
 	void				*mlx_ptr;
@@ -100,6 +101,10 @@ typedef struct s_game_instance
 	int					mv_down;
 	int					mv_left;
 	int 				mv_right;
+	int					rt_right;
+	int					rt_left;
+	double				vx;
+	double				vy;
 	t_img				miniMap;
 	t_game_resolutions	resolutions_init;
 }	t_game_instance;
@@ -109,6 +114,7 @@ typedef struct s_game_instance
 void	game(t_param *param);
 void	refresh_minimap(t_game_instance *game);
 void	ft_init_window(t_game_instance *game_init);
+void	move(t_game_instance *game);
 
 ///// Parsing
 void	get_vector(t_game_instance *game, t_param *param);

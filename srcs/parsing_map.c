@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:09:08 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/03 14:53:49 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/04 18:02:41 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	check_input(t_param *param, int i, int j, char **map)
 			if (param->dir != -1)
 				map_example(param, "double player");
 			param->dir = map[i][j];
+			map[i][j] = '0';
 			param->posx = j;
 			param->posy = i;
 		}
@@ -41,7 +42,7 @@ void	parse_map(t_param *param)
 	while (param->map[i])
 	{
 		j = 0;
-		while (param->map[i][j] && ft_strchr("SONW01 ", param->map[i][j]))
+		while (param->map[i][j] && ft_strchr("SENW01 ", param->map[i][j]))
 		{
 			check_input(param, i, j, param->map);
 			j++;

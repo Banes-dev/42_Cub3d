@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:55:44 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/04 14:12:51 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/04 16:22:43 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,23 @@ void	check_color(char *str, t_param *param)
 
 	i = 0;
 	if (!ft_isdigit(str[i]) || ft_atoi(str + i) > 255)
-		map_example(param, "syntax1");
+		map_example(param, "not r,g,b color");
 	while (ft_isdigit(str[i]))
 		i++;
 	if (!str[i] || str[i++] != ',')
-		map_example(param, "syntax2");
+		map_example(param, "not r,g,b color");
 	if (!ft_isdigit(str[i]) || ft_atoi(str + i) > 255)
-		map_example(param, "syntax3");
+		map_example(param, "not r,g,b color");
 	while (ft_isdigit(str[i]))
 		i++;
 	if (!str[i] || str[i++] != ',')
-		map_example(param, "syntax4");
+		map_example(param, "not r,g,b color");
 	if (!ft_isdigit(str[i]) || ft_atoi(str + i) > 255)
 		map_example(param, "not r,g,b color");
 	while (ft_isdigit(str[i]))
 		i++;
 	if (str[i])
-		map_example(param, "syntax4");
+		map_example(param, "not r,g,b color");
 }
 
 void	get_vector(t_game_instance *game, t_param *param)
@@ -78,7 +78,7 @@ int	get_color(char *str, t_param *param, char c)
 		map_example(param, "double color");
 	i = 0;
 	if (!is_isspace(str[i]))
-		map_example(param, "syntax0");
+		map_example(param, "not r,g,b color");
 	while (is_isspace(str[i]))
 		i++;
 	check_color(str + i, param);

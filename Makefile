@@ -53,7 +53,7 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 # Normal
 NAME = cub3d
-FUNC = srcs/cub3d.c srcs/error.c srcs/exit.c srcs/game.c srcs/cub3d_utils.c srcs/get_next_line.c srcs/parsing.c srcs/parsing_map.c srcs/parsing_utils.c srcs/minimap.c
+FUNC = srcs/cub3d.c srcs/error.c srcs/exit.c srcs/game.c srcs/cub3d_utils.c srcs/get_next_line.c srcs/parsing.c srcs/parsing_map.c srcs/parsing_utils.c srcs/minimap.c srcs/move.c
 OBJ = $(patsubst srcs/%.c, obj/%.o, $(FUNC))
 
 # Bonus

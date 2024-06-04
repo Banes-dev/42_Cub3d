@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:34:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/04 13:58:52 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/04 18:33:03 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,31 @@ void	put_player(t_game_instance *game)
 {
 	int x;
 	int y;
+	float x0;
+	float y0;
 
 	x = (MINIMAP_WIDTH / 2)- 2;
 	y = (MINIMAP_HEIGHT / 2) - 2;
-	while (y < (MINIMAP_HEIGHT / 2) + 3)
+	x0 = MINIMAP_WIDTH / 2;
+	y0 = MINIMAP_HEIGHT / 2;
+	while (y < (MINIMAP_HEIGHT / 2) + 2)
 	{
 		x = (MINIMAP_WIDTH / 2)- 2;
-		while (x < (MINIMAP_WIDTH / 2) + 3)
+		while (x < (MINIMAP_WIDTH / 2) + 2)
 		{
 			my_mlx_pixel_put(&game->miniMap, x, y, 0xFFFF0000);
 			x++;
 		}
 		y++;
+	}
+
+	x = (MINIMAP_WIDTH / 2)- 5;
+	y = (MINIMAP_HEIGHT / 2) - 5;
+	float expo = 0;
+	while (expo < 7)
+	{
+		my_mlx_pixel_put(&game->miniMap, (int)((float)x0 + (game->vector_x * expo)), (int)((float)y0 + (game->vector_y * expo)), 0xFFFF0000);
+		expo += 0.5;
 	}
 }
 

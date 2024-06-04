@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/04 14:06:37 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/04 18:31:09 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,8 @@ int game_loop(void *ptr)
 {
 	t_game_instance *game;
 
-	game = (t_game_instance*)ptr;
-	if (game->mv_up && game->map[(int)(game->player_y - 0.3)][(int)game->player_x] != '1')
-		game->player_y -= 0.01;
-	if (game->mv_down && game->map[(int)(game->player_y + 0.3)][(int)game->player_x] != '1')
-		game->player_y += 0.01;
-	if (game->mv_left && game->map[(int)game->player_y][(int)(game->player_x - 0.3)] != '1')
-		game->player_x -= 0.01;
-	if (game->mv_right && game->map[(int)game->player_y][(int)(game->player_x + 0.3)] != '1')
-		game->player_x += 0.01;
+	game = ptr;	
+	move(game);
 	refresh_minimap(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->miniMap.img_ptr, 0, WINDOW_HEIGHT - MINIMAP_HEIGHT);
 }
@@ -39,6 +32,8 @@ void	game(t_param *param)
 	game.mv_up = 0;
 	game.mv_left = 0;
 	game.mv_right = 0;
+	game.rt_left = 0;
+	game.rt_right = 0;
 	game.player_x = (double)param->posx + 0.5;
 	game.player_y = (double)param->posy + 0.5;
 	get_vector(&game, param);
