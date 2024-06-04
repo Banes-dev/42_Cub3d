@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/03 14:42:08 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/04 14:16:49 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	refresh_minimap(t_game_instance *game);
 void	ft_init_window(t_game_instance *game_init);
 
 ///// Parsing
+void	get_vector(t_game_instance *game, t_param *param);
 char	*get_next_line(int fd);
 int		check_file(t_param	*param, int fd);
 int		is_isspace(char c);

@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/03 14:53:25 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/04 14:06:37 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	game(t_param *param)
 	game.mv_right = 0;
 	game.player_x = (double)param->posx + 0.5;
 	game.player_y = (double)param->posy + 0.5;
+	get_vector(&game, param);
 	game.miniMap.img_ptr = mlx_new_image(game.mlx_ptr, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 	game.miniMap.data = mlx_get_data_addr(game.miniMap.img_ptr, &game.miniMap.bpp, &game.miniMap.size_l, &game.miniMap.endian);
 	mlx_loop_hook(game.mlx_ptr, game_loop, &game);

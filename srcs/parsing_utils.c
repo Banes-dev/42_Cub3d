@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:55:44 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/03 14:53:53 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/04 14:12:51 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,30 @@ void	check_color(char *str, t_param *param)
 		i++;
 	if (str[i])
 		map_example(param, "syntax4");
+}
+
+void	get_vector(t_game_instance *game, t_param *param)
+{
+	if (param->dir == 'N')
+	{
+		game->vector_x = 0;
+		game->vector_y = -1;
+	}
+	if (param->dir == 'S')
+	{
+		game->vector_x = 0;
+		game->vector_y = 1;
+	}
+	if (param->dir == 'E')
+	{
+		game->vector_x = 1;
+		game->vector_y = 0;
+	}
+	if (param->dir == 'W')
+	{
+		game->vector_x = -1;
+		game->vector_y = 0;
+	}
 }
 
 int	get_color(char *str, t_param *param, char c)

@@ -6,20 +6,11 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:34:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/03 18:29:10 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/04 13:58:52 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	put_player(t_game_instance *game)
-{
-	t_list *hey;
-
-	hey = NULL;
-	
-	ft_lstadd_back(&hey, ft_lstnew())
-}
 
 void	put_player(t_game_instance *game)
 {
