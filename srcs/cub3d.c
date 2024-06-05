@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/04 18:31:09 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/05 14:43:32 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int game_loop(void *ptr)
 
 	game = ptr;	
 	move(game);
+	check_raycasting(game);
 	refresh_minimap(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->miniMap.img_ptr, 0, WINDOW_HEIGHT - MINIMAP_HEIGHT);
 }

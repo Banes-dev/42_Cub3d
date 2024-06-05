@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:19:51 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/04 17:29:40 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/05 14:44:02 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int	ft_check_esc(int key, t_game_instance *game)
 {
 	if (key == ESC)
-	{
-		printf("\nGame ended, you are a noob.\n");
 		ft_exit_program(game);
-	}
 	if (key == RIGHT)
 		game->rt_right = 1;
 	if (key == LEFT)

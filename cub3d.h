@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/04 18:32:44 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/05 14:54:36 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@
 # include "fcntl.h" 		  // Read
 # include "string.h" 		  // fonction string
 # include "mlx/mlx.h"
-#include <math.h>
+# include "math.h"
 
 # define WINDOW_WIDTH 960
 # define WINDOW_HEIGHT 840
 # define MINIMAP_WIDTH WINDOW_WIDTH / 5 
 # define MINIMAP_HEIGHT WINDOW_HEIGHT / 5
+
+# define FOV 60 // between 60 and 320 ?
 
 # define ESPACE '0'
 # define WALL '1'
