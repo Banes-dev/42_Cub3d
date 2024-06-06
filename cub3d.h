@@ -6,7 +6,7 @@
 /*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/05 14:54:36 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/06 16:12:08 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 # define WINDOW_WIDTH 960
 # define WINDOW_HEIGHT 840
+# define TILE_SIZE 30
 # define MINIMAP_WIDTH WINDOW_WIDTH / 5 
 # define MINIMAP_HEIGHT WINDOW_HEIGHT / 5
 
@@ -42,6 +43,7 @@
 # define SOUTH 'S'
 # define EAST 'E'
 # define WEST 'W'
+
 # define RS 0.01 // vitesse de rotation
 # define MS 0.01 // vitesse de deplacement 
 # define ESC 65307
@@ -125,6 +127,9 @@ int		check_file(t_param	*param, int fd);
 int		is_isspace(char c);
 int		get_color(char *str, t_param *param, char c);
 void	check_map(t_param *param);
+
+///// Raycasting
+int		check_raycasting(t_game_instance *game);
 
 // Error
 void	ft_error(int num_error);
