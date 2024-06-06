@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/06 16:12:08 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/07 01:45:36 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@
 # include "mlx/mlx.h"
 # include "math.h"
 
+
 # define WINDOW_WIDTH 960
 # define WINDOW_HEIGHT 840
 # define TILE_SIZE 30
-# define MINIMAP_WIDTH WINDOW_WIDTH / 5 
-# define MINIMAP_HEIGHT WINDOW_HEIGHT / 5
+# define MINIMAP_WIDTH WINDOW_WIDTH / 4
+# define MINIMAP_HEIGHT WINDOW_HEIGHT / 4
 
 # define FOV 60 // between 60 and 320 ?
 
@@ -44,9 +45,16 @@
 # define EAST 'E'
 # define WEST 'W'
 
-# define RS 0.01 // vitesse de rotation
-# define MS 0.01 // vitesse de deplacement 
+# define RS 0.05// vitesse de rotation
+# define MS 0.05 // vitesse de deplacement 
 # define ESC 65307
+
+
+// # define W 122
+// # define A 113
+// # define S 115
+// # define D 100
+
 # define W 119
 # define A 97
 # define S 115
@@ -101,6 +109,8 @@ typedef struct s_game_instance
 	double				camera_x;
 	double				camera_y;
 	char				**map;
+	int					color_f;
+	int					color_c;
 	int					mv_up;
 	int					mv_down;
 	int					mv_left;
@@ -110,6 +120,7 @@ typedef struct s_game_instance
 	double				vx;
 	double				vy;
 	t_img				miniMap;
+	t_img				cub3d;
 	t_game_resolutions	resolutions_init;
 }	t_game_instance;
 

@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/05 14:43:32 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/07 01:34:10 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	put_floor_celling(t_game_instance *game)
+{
+	int y;
+	int x;
+	
+	x = 0;
+	while (x < WINDOW_WIDTH)
+	{
+		y = 0;
+		while(y < WINDOW_HEIGHT)
+		{
+			if (y < WINDOW_HEIGHT / 2)
+				my_mlx_pixel_put(&game->cub3d, x, y, game->color_c);
+			else
+				my_mlx_pixel_put(&game->cub3d, x, y, game->color_f);
+			y++;
+		}
+		x++;
+	}
+}
 
 int game_loop(void *ptr)
 {
@@ -18,7 +39,9 @@ int game_loop(void *ptr)
 
 	game = ptr;	
 	move(game);
+	put_floor_celling(game);
 	check_raycasting(game);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->cub3d.img_ptr, 0, 0);
 	refresh_minimap(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->miniMap.img_ptr, 0, WINDOW_HEIGHT - MINIMAP_HEIGHT);
 }
@@ -29,6 +52,8 @@ void	game(t_param *param)
 
 	game.map = param->map;
 	ft_init_window(&game);
+	game.color_c = param->color_c;
+	game.color_f = param->color_f;
 	game.mv_down = 0;
 	game.mv_up = 0;
 	game.mv_left = 0;
@@ -38,6 +63,8 @@ void	game(t_param *param)
 	game.player_x = (double)param->posx + 0.5;
 	game.player_y = (double)param->posy + 0.5;
 	get_vector(&game, param);
+	game.cub3d.img_ptr = mlx_new_image(game.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	game.cub3d.data = mlx_get_data_addr(game.cub3d.img_ptr, &game.cub3d.bpp, &game.cub3d.size_l, &game.cub3d.endian);
 	game.miniMap.img_ptr = mlx_new_image(game.mlx_ptr, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 	game.miniMap.data = mlx_get_data_addr(game.miniMap.img_ptr, &game.miniMap.bpp, &game.miniMap.size_l, &game.miniMap.endian);
 	mlx_loop_hook(game.mlx_ptr, game_loop, &game);
