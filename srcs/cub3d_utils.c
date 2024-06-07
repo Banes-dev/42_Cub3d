@@ -6,11 +6,19 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:51:36 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/03 17:04:57 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/07 18:06:26 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	my_mlx_get_color(t_img *data, int x, int y)
+{
+	char	*dst;
+
+	dst = data->data + (y * data->size_l + x * (data->bpp / 8));
+	return (*(unsigned int *)dst);
+}
 
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 {

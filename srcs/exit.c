@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:25:16 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/05 14:29:04 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/07 17:40:25 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	ft_exit_program(t_game_instance *game_init)
 	// ft_free_img(game_init);
 	// ft_cleanup(game_init);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->miniMap.img_ptr);
+	mlx_destroy_image(game_init->mlx_ptr, game_init->cub3d.img_ptr);
 	mlx_destroy_window(game_init->mlx_ptr, game_init->win_ptr);
 	mlx_destroy_display(game_init->mlx_ptr);
 	free(game_init->mlx_ptr);

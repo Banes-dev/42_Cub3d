@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/07 01:34:10 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/07 18:08:08 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,25 @@ void	put_floor_celling(t_game_instance *game)
 	}
 }
 
+void	fusion_img(t_game_instance *game)
+{
+	int x = 0;
+	int y = 0;
+	int ycub = WINDOW_HEIGHT - MINIMAP_HEIGHT;
+
+	while (ycub < WINDOW_HEIGHT)
+	{
+		while (x < MINIMAP_WIDTH)
+		{
+			my_mlx_pixel_put(&game->cub3d, x, ycub, my_mlx_get_color(&game->miniMap, x, y));
+			x++;
+		}
+		x = 0;
+		y++;
+		ycub++;
+	}
+}
+
 int game_loop(void *ptr)
 {
 	t_game_instance *game;
@@ -41,9 +60,10 @@ int game_loop(void *ptr)
 	move(game);
 	put_floor_celling(game);
 	check_raycasting(game);
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->cub3d.img_ptr, 0, 0);
 	refresh_minimap(game);
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->miniMap.img_ptr, 0, WINDOW_HEIGHT - MINIMAP_HEIGHT);
+	fusion_img(game);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->cub3d.img_ptr, 0, 0);
+	usleep(2);
 }
 
 void	game(t_param *param)

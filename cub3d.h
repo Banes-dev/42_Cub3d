@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/07 01:45:36 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/07 18:11:26 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 # define EAST 'E'
 # define WEST 'W'
 
-# define RS 0.05// vitesse de rotation
-# define MS 0.05 // vitesse de deplacement 
+# define RS 0.04// vitesse de rotation
+# define MS 0.04 // vitesse de deplacement 
 # define ESC 65307
 
 
@@ -151,5 +151,6 @@ int		ft_exit_program(t_game_instance *game_init);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	simple_del(void *del);
 void	free_tab(char **tab);
+int		my_mlx_get_color(t_img *data, int x, int y);
 
 #endif
