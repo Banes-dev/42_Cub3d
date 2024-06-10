@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:42:27 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/04 18:26:10 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:19:44 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,25 @@
 void	rotate(t_game_instance *game)
 {
 	double tmp;
+	double tmp_plane;
 
 	if (game->rt_right)
 	{
 		tmp = game->vector_x;
 		game->vector_x = game->vector_x * cos(RS) - game->vector_y * sin(RS);
 		game->vector_y = tmp * sin(RS) + game->vector_y * cos(RS);
+		tmp_plane = game->plane_x;
+		game->plane_x = game->plane_x * cos(RS) + game->plane_y * sin(RS);
+		game->plane_y = tmp_plane * sin(RS) + game->plane_y * cos(RS);
 	}
 	if (game->rt_left)
 	{
 		tmp = game->vector_x;
 		game->vector_x = game->vector_x * cos(-RS) - game->vector_y * sin(-RS);
 		game->vector_y = tmp * sin(-RS) + game->vector_y * cos(-RS);
+		tmp_plane = game->plane_x;
+		game->plane_x = game->plane_x * cos(-RS) - game->plane_y * sin(-RS);
+		game->plane_y = -tmp_plane * sin(-RS) + game->plane_y * cos(-RS);
 	}
 }
 

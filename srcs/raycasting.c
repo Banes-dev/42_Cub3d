@@ -6,7 +6,7 @@
 /*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:49:35 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/06 16:12:22 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/10 16:37:04 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,33 +45,62 @@ int	check_raycasting(t_game_instance *game)
 
 
 
-	// boucle pour chaque rayon fisrt_angle + FOV / WINDOW_WIDTH;
-	int	ray;
-	double base_radians;
-	double base_angle;
-	double first_angle;
-	double horizon_intersection;
-	double vertical_intersection;
-	double distance;
+	int x;
+	double ray_dir_x;
+	double ray_dir_y;
+	double delta_dist_x;
+	double delta_dist_y;
 
-	ray = 0;
-	base_radians = atan2(game->vector_x, game->vector_y);
-	base_angle = base_radians * (180.0 / M_PI);
-	first_angle = base_angle + (FOV / 2);
-	while (ray < WINDOW_WIDTH)
+	x = 0;
+	while (x < WINDOW_WIDTH)
 	{
-		// calcul distance puis rendu des wall
-		// horizon_intersection = get_h_inter(game, first_angle);      // get intersection horizontale
-		// vertical_intersection = get_v_inter(game, first_angle);     // get intersection verticale
-		if (vertical_intersection <= horizon_intersection)
-			distance = vertical_intersection;
-		else
-			distance = horizon_intersection;
-		// if (base_angle - first_angle <= 2)
-		// 	printf("distance : %f\n", distance);
-		ray++;
-		first_angle = first_angle + (FOV / WINDOW_WIDTH);
+		game->camera_x = 2 * x / (double)WINDOW_WIDTH - 1;
+		ray_dir_x = game->vector_x + game->plane_x * game->camera_x;
+		ray_dir_y = game->vector_y + game->plane_y * game->camera_x;
+
+		delta_dist_x = fabs(1 / ray_dir_x);
+		delta_dist_y = fabs(1 / ray_dir_y);
+
+		// calcul des step
+
+		// check si wall
+
+		// calcul taille des wall
+
+		printf("nb : %i, vector X : %f, vector Y : %f\n", x, game->plane_x, game->plane_y);
+		// printf("nb : %i, direc X : %f, direc Y : %f\n", x, delta_dist_x, delta_dist_y);
+		x++;
 	}
+
+
+
+	// boucle pour chaque rayon fisrt_angle + FOV / WINDOW_WIDTH;
+	// int	ray;
+	// double base_radians;
+	// double base_angle;
+	// double first_angle;
+	// double horizon_intersection;
+	// double vertical_intersection;
+	// double distance;
+
+	// ray = 0;
+	// base_radians = atan2(game->vector_x, game->vector_y);
+	// base_angle = base_radians * (180.0 / M_PI);
+	// first_angle = base_angle + (FOV / 2);
+	// while (ray < WINDOW_WIDTH)
+	// {
+	// 	// calcul distance puis rendu des wall
+	// 	// horizon_intersection = get_h_inter(game, first_angle);      // get intersection horizontale
+	// 	// vertical_intersection = get_v_inter(game, first_angle);     // get intersection verticale
+	// 	if (vertical_intersection <= horizon_intersection)
+	// 		distance = vertical_intersection;
+	// 	else
+	// 		distance = horizon_intersection;
+	// 	// if (base_angle - first_angle <= 2)
+	// 	// 	printf("distance : %f\n", distance);
+	// 	ray++;
+	// 	first_angle = first_angle + (FOV / WINDOW_WIDTH);
+	// }
 	// printf("distance : %f\n", distance);
 	// printf("rayon : %i, angle : %f\n", ray, first_angle);
 	

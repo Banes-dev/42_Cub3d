@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/07 18:11:26 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:37:09 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,14 @@ typedef struct s_game_instance
 	double				player_y;
 	double				vector_x;
 	double				vector_y;
+	double				plane_x;
+	double				plane_y;
 	double				camera_x;
 	double				camera_y;
+	// double				ray_dir_x;
+	// double				ray_dir_y;
+	// double				delta_dist_x;
+	// double				delta_dist_y;
 	char				**map;
 	int					color_f;
 	int					color_c;
