@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:55:44 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/04 16:22:43 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/11 13:42:57 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,23 @@ void	get_vector(t_game_instance *game, t_param *param)
 {
 	if (param->dir == 'N')
 	{
-		game->vector_x = 0;
 		game->vector_y = -1;
+		game->plane_x = 0.66;
 	}
 	if (param->dir == 'S')
 	{
-		game->vector_x = 0;
 		game->vector_y = 1;
-	}
-	if (param->dir == 'E')
-	{
-		game->vector_x = 1;
-		game->vector_y = 0;
+		game->plane_x = -0.66;
 	}
 	if (param->dir == 'W')
 	{
 		game->vector_x = -1;
-		game->vector_y = 0;
+		game->plane_y = -0.66;
+	}
+	if (param->dir == 'E')
+	{
+		game->vector_x = 1;
+		game->plane_y = 0.66;
 	}
 }
 

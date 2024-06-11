@@ -6,27 +6,28 @@
 /*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:49:35 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/10 16:37:04 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/11 16:33:36 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int wall_hit(double x, double y, t_game_instance *game) // check the wall hit
+void fill_line(t_game_instance *game, int x, int line_height)
 {
-	int  x_m;
-	int  y_m;
+	int i;
+	int y;
 
-	if (x < 0 || y < 0)
-		return (0);
-	x_m = floor(x / TILE_SIZE); // get the x position in the map
-	y_m = floor(y / TILE_SIZE); // get the y position in the map
-	// if ((y_m >= mlx->dt->h_map || x_m >= mlx->dt->w_map))
-	// 	return (0);
-	if (game->map[y_m] && x_m <= (int)strlen(game->map[y_m]))
-		if (game->map[y_m][x_m] == '1')
-			return (0);
-	return (1);
+	i = 0;
+	y = 0;
+	if (line_height > WINDOW_HEIGHT)
+		line_height = WINDOW_HEIGHT;
+	y = y + ((WINDOW_HEIGHT - line_height) / 2);
+	printf("%i, %i, %i\n", line_height, x, y);
+	while (i <= line_height)
+	{
+		my_mlx_pixel_put(&game->cub3d, x, y + i, 0x545454);
+		i++;
+	}
 }
 
 int	check_raycasting(t_game_instance *game)
@@ -43,32 +44,81 @@ int	check_raycasting(t_game_instance *game)
 	// double last_angle = theta_degrees - (FOV / 2);
 	// printf("dernier angle droit : %f\n", last_angle);
 
-
-
 	int x;
-	double ray_dir_x;
-	double ray_dir_y;
-	double delta_dist_x;
-	double delta_dist_y;
+	// int map_x = (int)game->player_x;
+	// int map_y = (int)game->player_y;
 
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
-		game->camera_x = 2 * x / (double)WINDOW_WIDTH - 1;
-		ray_dir_x = game->vector_x + game->plane_x * game->camera_x;
-		ray_dir_y = game->vector_y + game->plane_y * game->camera_x;
+		int map_x = (int)game->player_x;
+		int map_y = (int)game->player_y;
 
-		delta_dist_x = fabs(1 / ray_dir_x);
-		delta_dist_y = fabs(1 / ray_dir_y);
+		game->camera_x = 2 * x / (double)WINDOW_WIDTH - 1;
+		game->ray_dir_x = game->vector_x + game->plane_x * game->camera_x;
+		game->ray_dir_y = game->vector_y + game->plane_y * game->camera_x;
+
+		game->delta_dist_x = fabs(1 / game->ray_dir_x);
+		game->delta_dist_y = fabs(1 / game->ray_dir_y);
 
 		// calcul des step
+		if (game->ray_dir_x < 0)
+		{
+			game->step_x = -1;
+			game->side_dist_x = (game->player_x - map_x) * game->delta_dist_x;
+		}
+		else
+		{
+			game->step_x = 1;
+			game->side_dist_x = (map_x + 1.0 - game->player_x) * game->delta_dist_x;
+		}
+		if (game->ray_dir_y < 0)
+		{
+			game->step_y = -1;
+			game->side_dist_y = (game->player_y - map_y) * game->delta_dist_y;
+		}
+		else
+		{
+			game->step_y = 1;
+			game->side_dist_y = (map_y + 1.0 - game->player_y) * game->delta_dist_y;
+		}
 
 		// check si wall
+		while (1)
+		{
+			if (game->side_dist_x < game->side_dist_y)
+			{
+				game->side_dist_x = game->side_dist_x + game->delta_dist_x;
+				map_x = map_x + game->step_x;
+				game->sideofwall = 0;
+			}
+			else
+			{
+				game->side_dist_y = game->side_dist_y + game->delta_dist_y;
+				map_y = map_y + game->step_y;
+				game->sideofwall = 1;
+			}
+			// printf("map y : %i, map x : %i\n", map_y, map_x);
+			if ((game->map[map_y][map_x]) == '1' && map_x >= 0)
+			{
+				// printf("mur trouver, %c\n", game->map[map_y][map_x]);
+				// printf("test %f, %f\n", game->side_dist_y, game->side_dist_x);
+				break ;
+			}
+		}
 
 		// calcul taille des wall
+		double wall_dist = 0;
 
-		printf("nb : %i, vector X : %f, vector Y : %f\n", x, game->plane_x, game->plane_y);
-		// printf("nb : %i, direc X : %f, direc Y : %f\n", x, delta_dist_x, delta_dist_y);
+		if (game->sideofwall == 0)
+			wall_dist = (map_x - game->player_x + (1 - game->step_x) / 2) / game->ray_dir_x;
+		else
+			wall_dist = (map_y - game->player_y + (1 - game->step_y) / 2) / game->ray_dir_y;
+		int line_height = (int)(WINDOW_HEIGHT / wall_dist);
+		fill_line(game, x, line_height);
+		// printf("nb : %i, vector X : %f, vector Y : %f\n", x, game->plane_x, game->plane_y);
+		// printf("nb : %i, direc X : %f, direc Y : %f\n", x, game->delta_dist_x, game->delta_dist_y);
+		// printf("nb : %i, side dist X : %f, side dist Y : %f\n", x, game->side_dist_x, game->side_dist_y);
 		x++;
 	}
 

@@ -6,7 +6,7 @@
 /*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:34:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/10 14:21:08 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/11 16:51:25 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	refresh_minimap(t_game_instance *game)
 			if ((int)xmap >= 0 && (int)ymap >= 0 && ft_tab_size(game->map) - 1 >= (int)ymap && ft_strlen(game->map[(int)ymap]) - 1 >= (int)xmap && game->map[(int)ymap][(int)xmap] == '1')
 				my_mlx_pixel_put(&game->miniMap, x, y, 0x1b14e4);
 			else
-				my_mlx_pixel_put(&game->miniMap, x, y, game->color_c);
+				my_mlx_pixel_put(&game->miniMap, x, y, game->color_f);
 			xmap = (game->player_x - 4.0) + ((8.0 / width) * x++);
 		}
 		y++;

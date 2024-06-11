@@ -6,7 +6,7 @@
 /*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/10 16:37:09 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/11 16:53:08 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,10 @@
 # include "math.h"
 
 
-# define WINDOW_WIDTH 960
-# define WINDOW_HEIGHT 840
-# define TILE_SIZE 30
+# define WINDOW_WIDTH 1420  // 960
+# define WINDOW_HEIGHT 1080  // 840
 # define MINIMAP_WIDTH WINDOW_WIDTH / 4
 # define MINIMAP_HEIGHT WINDOW_HEIGHT / 4
-
-# define FOV 60 // between 60 and 320 ?
 
 # define ESPACE '0'
 # define WALL '1'
@@ -110,10 +107,16 @@ typedef struct s_game_instance
 	double				plane_y;
 	double				camera_x;
 	double				camera_y;
-	// double				ray_dir_x;
-	// double				ray_dir_y;
-	// double				delta_dist_x;
-	// double				delta_dist_y;
+	double				ray_dir_x;
+	double				ray_dir_y;
+	double				delta_dist_x;
+	double				delta_dist_y;
+	double				step_x;
+	double				step_y;
+	double				side_dist_x;
+	double				side_dist_y;
+	int					sideofwall;
+
 	char				**map;
 	int					color_f;
 	int					color_c;
@@ -123,8 +126,6 @@ typedef struct s_game_instance
 	int 				mv_right;
 	int					rt_right;
 	int					rt_left;
-	double				vx;
-	double				vy;
 	t_img				miniMap;
 	t_img				cub3d;
 	t_game_resolutions	resolutions_init;

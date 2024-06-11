@@ -6,7 +6,7 @@
 /*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/10 16:36:23 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/11 16:55:00 by ehay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	fusion_img(t_game_instance *game)
 {
 	int x = 0;
 	int y = 0;
-	int ycub = WINDOW_HEIGHT - MINIMAP_HEIGHT;
+	int ycub = 0;
 
-	while (ycub < WINDOW_HEIGHT)
+	while (ycub < MINIMAP_HEIGHT)
 	{
 		while (x < MINIMAP_WIDTH)
 		{
@@ -80,6 +80,23 @@ void	game(t_param *param)
 	game.mv_right = 0;
 	game.rt_left = 0;
 	game.rt_right = 0;
+	game.player_x = 0;
+	game.player_y = 0;
+	game.vector_x = 0;
+	game.vector_y = 0;
+	game.plane_x = 0;
+	game.plane_y = 0;
+	game.camera_x = 0;
+	game.camera_y = 0;
+	game.ray_dir_x = 0;
+	game.ray_dir_y = 0;
+	game.delta_dist_x = 0;
+	game.delta_dist_y = 0;
+	game.step_x = 0;
+	game.step_y = 0;
+	game.side_dist_x = 0;
+	game.side_dist_y = 0;
+	game.sideofwall = 0;
 	game.player_x = (double)param->posx + 0.5;
 	game.player_y = (double)param->posy + 0.5;
 	get_vector(&game, param);
