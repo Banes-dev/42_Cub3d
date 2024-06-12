@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/12 13:50:10 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/12 18:34:18 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # include "math.h"
 
 
-# define WINDOW_WIDTH 1014 // 960
-# define WINDOW_HEIGHT 900 // 840
+# define WINDOW_WIDTH 994 // 960
+# define WINDOW_HEIGHT 994 // 840
 # define MINIMAP_WIDTH WINDOW_WIDTH / 4
 # define MINIMAP_HEIGHT WINDOW_HEIGHT / 4
 

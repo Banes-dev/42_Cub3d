@@ -1,8 +1,8 @@
-NO textures/wood.xpm
-SO textures/stone.xpm
-WE textures/mossy.xpm
-EA textures/redbrick.xpm
-F 224,182,54
+NO textures/chat.xpm
+SO textures/chat4.xpm
+WE textures/chat2.xpm
+EA textures/chat3.xpm
+F 75,75,75
 C 153,255,255
 
         1111111111111111111111111

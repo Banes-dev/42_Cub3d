@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:49:35 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/12 14:43:53 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/12 18:32:45 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,18 @@ void fill_line(t_game_instance *game, int x, int line_height, double wall_dist)
 
 	i = 0;
 	y = 0;
-	if (line_height > WINDOW_HEIGHT)
-		line_height = WINDOW_HEIGHT;
-	y = ((WINDOW_HEIGHT - line_height) / 2);
-	start = y;
-	// printf("%i, %i, %i\n", line_height, x, y);
+    start = -line_height / 2 + WINDOW_HEIGHT / 2;
+    if (start < 0) start = 0;
+    end = line_height / 2 + WINDOW_HEIGHT / 2;
+    if (end >= WINDOW_HEIGHT) end = WINDOW_HEIGHT - 1;
+	y = start;
 	get_texx(game, wall_dist);
 	game->y_text = 0;
 	y_step = game->tex[game->id].height / line_height;
-	while (i <= line_height)
+	while (i + start <= end)
 	{
-		game->y_text = abs(((((y + i) * 256 - WINDOW_HEIGHT * 128 + line_height * 128) * 64) / line_height) / 256);
-		//if (game->x_text <= game->tex[i].width - 1 && game->y_text <= game->tex[i].height && game->x_text >= 0 && game->y_text >= 0)
-		my_mlx_pixel_put(&game->cub3d, x, y + i, my_mlx_get_color(&game->tex[game->id].img, (int)game->x_text % 64, (int)game->y_text ));
+		game->y_text = abs(((((y + i) * 256 - WINDOW_HEIGHT * 128 + line_height * 128) * game->tex[game->id].height) / line_height) / 256);
+		my_mlx_pixel_put(&game->cub3d, x, y + i, my_mlx_get_color(&game->tex[game->id].img, (int)game->x_text % game->tex[game->id].height, (int)game->y_text % game->tex[game->id].height));
 		i++;
 	}
 }
