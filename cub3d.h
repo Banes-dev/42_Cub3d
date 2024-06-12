@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/12 03:23:45 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/12 13:50:10 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@
 # define ESC 65307
 
 
-# define W 122
-# define A 113
-# define S 115
-# define D 100
-
-// # define W 119
-// # define A 97
+// # define W 122
+// # define A 113
 // # define S 115
 // # define D 100
+
+# define W 119
+# define A 97
+# define S 115
+# define D 100
 # define LEFT 65361
 # define RIGHT 65363
 
@@ -125,8 +125,8 @@ typedef struct s_game_instance
 	int					sideofwall;
 	char				**map;
 	int					id;
-	int					x_text;
-	int 				y_text;
+	float				x_text;
+	float 				y_text;
 	int					color_f;
 	int					color_c;
 	int					mv_up;

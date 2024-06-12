@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:49:35 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/12 12:40:33 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/12 14:43:53 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,29 @@
 void	get_texx(t_game_instance *game, double wall_dist)
 {
 	float x_wall;
-	double x_step;
-	
-	if (game->sideofwall == 0 && game->vector_x < 0)
-		game->id = 0;
-	else if (game->sideofwall == 0)
-		game->id = 1;
-	if (game->sideofwall == 1 && game->vector_y > 0)
-		game->id = 2;
-	else if (game->sideofwall == 1)
+	game->id = 0;
+	if (game->sideofwall == 0 && game->ray_dir_x < 0)
 		game->id = 3;
-	x_step = (float)game->tex[game->id].width / (float)WINDOW_WIDTH;
+	else if (game->sideofwall == 0)
+		game->id = 2;
+	if (game->sideofwall == 1 && game->ray_dir_y < 0)
+		game->id = 0;
+	else if (game->sideofwall == 1)
+		game->id = 1;
 	if (game->sideofwall == 0)
-		x_wall = (float)game->player_x + wall_dist * game->vector_y;
+		x_wall = game->player_y + wall_dist * game->ray_dir_y;
 	else
-		x_wall = (float)game->player_y + wall_dist * game->vector_x;
-	game->x_text = (int)(x_wall * game->tex[game->id].width);
+		x_wall = game->player_x + wall_dist * game->ray_dir_x;
+	game->x_text = (int)(x_wall * (double)game->tex[game->id].width);
+	// if (game->sideofwall == 0 && game->ray_dir_x > 0)
+	// 	game->x_text = game->tex[game->id].width - game->x_text - 1;
+	// if (game->sideofwall == 1 && game->ray_dir_y < 0)
+	// 	game->x_text = game->tex[game->id].width - game->x_text - 1;
 	// if (s->side == 0 && s->x_raydir > 0)
 	// 	s->x_text = s->tex[id].texx - s->x_text - 1;
 	// if (s->side == 1 && s->y_raydir < 0)
 	// 	s->x_text = s->tex[id].texx - s->x_text - 1;
 	game->x_text = abs(game->x_text);
-	printf("%d\n", game->x_text);
 }
 
 void fill_line(t_game_instance *game, int x, int line_height, double wall_dist)
@@ -44,21 +45,24 @@ void fill_line(t_game_instance *game, int x, int line_height, double wall_dist)
 	int i;
 	int y;
 	float y_step;
+	int start;
+	int end;
 
 	i = 0;
 	y = 0;
 	if (line_height > WINDOW_HEIGHT)
 		line_height = WINDOW_HEIGHT;
 	y = ((WINDOW_HEIGHT - line_height) / 2);
+	start = y;
 	// printf("%i, %i, %i\n", line_height, x, y);
 	get_texx(game, wall_dist);
 	game->y_text = 0;
 	y_step = game->tex[game->id].height / line_height;
 	while (i <= line_height)
 	{
+		game->y_text = abs(((((y + i) * 256 - WINDOW_HEIGHT * 128 + line_height * 128) * 64) / line_height) / 256);
 		//if (game->x_text <= game->tex[i].width - 1 && game->y_text <= game->tex[i].height && game->x_text >= 0 && game->y_text >= 0)
-			my_mlx_pixel_put(&game->cub3d, x, y + i, game->id * 100);//my_mlx_get_color(&game->tex[game->id].img, game->x_text, game->y_text));
-		game->y_text += y_step;
+		my_mlx_pixel_put(&game->cub3d, x, y + i, my_mlx_get_color(&game->tex[game->id].img, (int)game->x_text % 64, (int)game->y_text ));
 		i++;
 	}
 }
