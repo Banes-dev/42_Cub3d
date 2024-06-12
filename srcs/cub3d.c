@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/11 16:55:00 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/12 02:38:34 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int game_loop(void *ptr)
 	refresh_minimap(game);
 	fusion_img(game);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->cub3d.img_ptr, 0, 0);
-	usleep(2);
 }
 
 void	game(t_param *param)
@@ -71,7 +70,7 @@ void	game(t_param *param)
 	t_game_instance	game;
 
 	game.map = param->map;
-	ft_init_window(&game);
+	ft_init_window(&game, param);
 	game.color_c = param->color_c;
 	game.color_f = param->color_f;
 	game.mv_down = 0;

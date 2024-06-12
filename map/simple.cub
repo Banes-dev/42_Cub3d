@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_east_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO textures/cat.xpm
+SO textures/cat.xpm
+WE textures/cat.xpm
+EA textures/cat.xpm
 F 224,182,54
 C 153,255,255
 

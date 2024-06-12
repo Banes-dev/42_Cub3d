@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:22:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/03 14:53:57 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/11 20:20:24 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,5 @@ int	check_file(t_param	*param, int fd)
 	param->file = get_file(fd);
 	check_param(param);
 	free_tab(param->file);
-	free(param->tex_e);
-	free(param->tex_n);
-	free(param->tex_s);
-	free(param->tex_w);
 	return (0);
 }

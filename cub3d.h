@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/11 16:53:08 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/12 03:23:45 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # include "math.h"
 
 
-# define WINDOW_WIDTH 1420  // 960
-# define WINDOW_HEIGHT 1080  // 840
+# define WINDOW_WIDTH 1014 // 960
+# define WINDOW_HEIGHT 900 // 840
 # define MINIMAP_WIDTH WINDOW_WIDTH / 4
 # define MINIMAP_HEIGHT WINDOW_HEIGHT / 4
 
@@ -47,15 +47,15 @@
 # define ESC 65307
 
 
-// # define W 122
-// # define A 113
-// # define S 115
-// # define D 100
-
-# define W 119
-# define A 97
+# define W 122
+# define A 113
 # define S 115
 # define D 100
+
+// # define W 119
+// # define A 97
+// # define S 115
+// # define D 100
 # define LEFT 65361
 # define RIGHT 65363
 
@@ -85,6 +85,13 @@ typedef struct s_img
 	int			endian;
 }				t_img;
 
+
+typedef struct s_tex
+{
+	t_img		img;
+	int 		width;
+	int 		height;
+}				t_tex;
 // GAME RESOLUTIONS 
 typedef struct s_game_resolutions
 {
@@ -116,8 +123,10 @@ typedef struct s_game_instance
 	double				side_dist_x;
 	double				side_dist_y;
 	int					sideofwall;
-
 	char				**map;
+	int					id;
+	int					x_text;
+	int 				y_text;
 	int					color_f;
 	int					color_c;
 	int					mv_up;
@@ -126,6 +135,7 @@ typedef struct s_game_instance
 	int 				mv_right;
 	int					rt_right;
 	int					rt_left;
+	t_tex				tex[4];
 	t_img				miniMap;
 	t_img				cub3d;
 	t_game_resolutions	resolutions_init;
@@ -135,7 +145,7 @@ typedef struct s_game_instance
 ////// Functions
 void	game(t_param *param);
 void	refresh_minimap(t_game_instance *game);
-void	ft_init_window(t_game_instance *game_init);
+void	ft_init_window(t_game_instance *game_init, t_param *param);
 void	move(t_game_instance *game);
 
 ///// Parsing

@@ -3,29 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehay <ehay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:49:35 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/11 16:33:36 by ehay             ###   ########.fr       */
+/*   Updated: 2024/06/12 12:40:33 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void fill_line(t_game_instance *game, int x, int line_height)
+void	get_texx(t_game_instance *game, double wall_dist)
+{
+	float x_wall;
+	double x_step;
+	
+	if (game->sideofwall == 0 && game->vector_x < 0)
+		game->id = 0;
+	else if (game->sideofwall == 0)
+		game->id = 1;
+	if (game->sideofwall == 1 && game->vector_y > 0)
+		game->id = 2;
+	else if (game->sideofwall == 1)
+		game->id = 3;
+	x_step = (float)game->tex[game->id].width / (float)WINDOW_WIDTH;
+	if (game->sideofwall == 0)
+		x_wall = (float)game->player_x + wall_dist * game->vector_y;
+	else
+		x_wall = (float)game->player_y + wall_dist * game->vector_x;
+	game->x_text = (int)(x_wall * game->tex[game->id].width);
+	// if (s->side == 0 && s->x_raydir > 0)
+	// 	s->x_text = s->tex[id].texx - s->x_text - 1;
+	// if (s->side == 1 && s->y_raydir < 0)
+	// 	s->x_text = s->tex[id].texx - s->x_text - 1;
+	game->x_text = abs(game->x_text);
+	printf("%d\n", game->x_text);
+}
+
+void fill_line(t_game_instance *game, int x, int line_height, double wall_dist)
 {
 	int i;
 	int y;
+	float y_step;
 
 	i = 0;
 	y = 0;
 	if (line_height > WINDOW_HEIGHT)
 		line_height = WINDOW_HEIGHT;
-	y = y + ((WINDOW_HEIGHT - line_height) / 2);
-	printf("%i, %i, %i\n", line_height, x, y);
+	y = ((WINDOW_HEIGHT - line_height) / 2);
+	// printf("%i, %i, %i\n", line_height, x, y);
+	get_texx(game, wall_dist);
+	game->y_text = 0;
+	y_step = game->tex[game->id].height / line_height;
 	while (i <= line_height)
 	{
-		my_mlx_pixel_put(&game->cub3d, x, y + i, 0x545454);
+		//if (game->x_text <= game->tex[i].width - 1 && game->y_text <= game->tex[i].height && game->x_text >= 0 && game->y_text >= 0)
+			my_mlx_pixel_put(&game->cub3d, x, y + i, game->id * 100);//my_mlx_get_color(&game->tex[game->id].img, game->x_text, game->y_text));
+		game->y_text += y_step;
 		i++;
 	}
 }
@@ -99,7 +132,7 @@ int	check_raycasting(t_game_instance *game)
 				game->sideofwall = 1;
 			}
 			// printf("map y : %i, map x : %i\n", map_y, map_x);
-			if ((game->map[map_y][map_x]) == '1' && map_x >= 0)
+			if ((game->map[map_y][map_x]) == '1')
 			{
 				// printf("mur trouver, %c\n", game->map[map_y][map_x]);
 				// printf("test %f, %f\n", game->side_dist_y, game->side_dist_x);
@@ -109,13 +142,12 @@ int	check_raycasting(t_game_instance *game)
 
 		// calcul taille des wall
 		double wall_dist = 0;
-
 		if (game->sideofwall == 0)
 			wall_dist = (map_x - game->player_x + (1 - game->step_x) / 2) / game->ray_dir_x;
 		else
 			wall_dist = (map_y - game->player_y + (1 - game->step_y) / 2) / game->ray_dir_y;
 		int line_height = (int)(WINDOW_HEIGHT / wall_dist);
-		fill_line(game, x, line_height);
+		fill_line(game, x, line_height, wall_dist);
 		// printf("nb : %i, vector X : %f, vector Y : %f\n", x, game->plane_x, game->plane_y);
 		// printf("nb : %i, direc X : %f, direc Y : %f\n", x, game->delta_dist_x, game->delta_dist_y);
 		// printf("nb : %i, side dist X : %f, side dist Y : %f\n", x, game->side_dist_x, game->side_dist_y);

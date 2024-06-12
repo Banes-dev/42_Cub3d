@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:19:51 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/06 20:50:17 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/11 21:23:28 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,58 @@ int	key_release(int key, t_game_instance *game)
 	return (0);
 }
 
-void	ft_init_window(t_game_instance *game_init)
+int	open_texture(t_game_instance *game, t_param *param)
+{
+	int i;
+	int a;
+
+	i = 0;
+	a = 0;
+	game->tex[0].img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, param->tex_n, &game->tex[0].width, &game->tex[0].height);
+	game->tex[1].img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, param->tex_s, &game->tex[1].width, &game->tex[1].height);
+	game->tex[2].img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, param->tex_e, &game->tex[2].width, &game->tex[2].height);
+	game->tex[3].img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, param->tex_w, &game->tex[3].width, &game->tex[3].height);
+	while (i <= 3)
+	{
+		if (game->tex[i].img.img_ptr == NULL || game->tex[i].height < 10 || game->tex[i].height != game->tex[i].width)
+			a = 1;
+		else
+			game->tex[i].img.data = mlx_get_data_addr(game->tex[i].img.img_ptr, &game->tex[i].img.bpp, &game->tex[i].img.size_l, &game->tex[i].img.endian);
+		i++;
+	}
+	free(param->tex_e);
+	free(param->tex_n);
+	free(param->tex_s);
+	free(param->tex_w);
+	return (a);
+}
+
+void 	ft_error_texture(t_game_instance *game)
+{
+	int i;
+
+	i = 0;
+	while (i <= 3)
+	{
+		if (game->tex[i].img.img_ptr != NULL)
+			mlx_destroy_image(game->mlx_ptr, game->tex[i].img.img_ptr);
+		i++;
+	}
+	mlx_destroy_display(game->mlx_ptr);
+	free_tab(game->map);
+	free(game->mlx_ptr);
+	ft_putstr_fd("\033[96mError : \033[91mnot a valid texture\033[0m\n", 2);
+	exit(1);
+		
+}
+
+void	ft_init_window(t_game_instance *game_init, t_param *param)
 {
 	game_init->mlx_ptr = mlx_init();
 	if (game_init->mlx_ptr == NULL)
 		ft_error(89);
+	if (open_texture(game_init, param))
+		ft_error_texture(game_init);
 	game_init->win_ptr = mlx_new_window(game_init->mlx_ptr,
 			WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d in the desert");
 	if (game_init->win_ptr == NULL)
