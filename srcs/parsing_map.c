@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:09:08 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/12 21:01:57 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:19:21 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	check_map(t_param *param)
 	if (param->file[i] == NULL)
 		map_example(param, "no map");
 	while (param->file[i] && (ft_isdigit(param->file[i][0])
-			|| is_isspace(param->file[i][0])))
+		|| is_isspace(param->file[i][0])))
 		ft_lstadd_back(&map, ft_lstnew(ft_strdup(param->file[i++])));
 	while (param->file[i] && param->file[i][0] == '\0')
 		i++;

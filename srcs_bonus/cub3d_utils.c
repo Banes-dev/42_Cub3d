@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:51:36 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/13 03:05:42 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:28:14 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	fusion_img(t_game_instance *game)
 		while (x < MINIMAP_WIDTH)
 		{
 			my_mlx_pixel_put(&game->cub3d, x, ycub,
-				my_mlx_get_color(&game->miniMap, x, y));
+				my_mlx_get_color(&game->minimap, x, y));
 			x++;
 		}
 		x = 0;

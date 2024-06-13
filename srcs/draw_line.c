@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 01:54:27 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/13 03:19:45 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:18:02 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	get_texx(t_game_instance *game, double wall_dist)
 void	fill_line(t_game_instance *game, int x, int line_height,
 		double wall_dist)
 {
-	int		i;
-	int		start;
-	int		end;
+	int	i;
+	int	start;
+	int	end;
 
 	i = 0;
 	start = -line_height / 2 + WINDOW_HEIGHT / 2;
@@ -73,9 +73,9 @@ void	fill_line(t_game_instance *game, int x, int line_height,
 	game->y_text = 0;
 	while (i + start <= end)
 	{
-		game->y_text = abs(((((start + i) * 256 - WINDOW_HEIGHT * 128 + line_height
-							* 128) * game->tex[game->id].height) / line_height)
-				/ 256);
+		game->y_text = abs(((((start + i) * 256 - WINDOW_HEIGHT * 128
+							+ line_height * 128) * game->tex[game->id].height)
+					/ line_height) / 256);
 		my_mlx_pixel_put(&game->cub3d, x, start + i,
 			my_mlx_get_color(&game->tex[game->id].img, (int)game->x_text
 				% game->tex[game->id].height, (int)game->y_text

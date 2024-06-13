@@ -1,10 +1,11 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_west_texture
+NO textures/chat.xpm
+WE textures/chat2.xpm
+EA textures/chat3.xpm
+SO textures/chat4.xpm
 
-F 220,100,255
-C 0, 0, 0
+
+F 75,75,75
+C 34,0,84
 
 1111111
 1001011

@@ -49,7 +49,7 @@ CC = cc
 LIBFT = ./libft/libft.a
 HEADER_LIB = libft/libft.h
 
-CFLAGS = -g -Wall -Wextra -Werror -lm
+CFLAGS = -g -Wall -Wextra -Werror
 
 # Normal
 NAME = cub3D
@@ -77,7 +77,7 @@ OBJ_BONUS = $(patsubst srcs_bonus/%.c, obj_bonus/%.o, $(FUNC_BONUS))
 
 # Mlx
 MLX_PATH = ./mlx/
-MLX_FLAGS = -lX11 -lXext
+MLX_FLAGS = -lX11 -lXext -lm
 MLX_LIB = mlx/libmlx_Linux.a
 
 HEADER =	cub3d.h

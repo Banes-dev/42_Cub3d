@@ -6,36 +6,54 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 01:54:27 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/13 04:10:06 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 19:38:57 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
+int		get_darkest_color(int color, int dec)
+{
+	int r;
+	int g;
+	int b;
+
+	if (dec < 0)
+		dec = 0;
+	r = (color & 0xffffff) >> 16;
+	g = (color & 0xffff) >> 8;
+	b = (color & 0xff);
+	
+	if (r - dec >= 0)
+		r = r - dec;
+	else
+		r = 0;
+	if (g - dec >= 0)
+		g = g - dec;
+	else
+		g = 0;
+	if (b - dec >= 0)
+		b = b - dec;
+	else
+		b = 0;
+	return ((r << 16) + (g << 8) + b);
+}
+
 void	put_floor_celling(t_game_instance *game)
 {
 	int	y;
 	int	x;
-	int color;
 
 	x = 0;
-	color = game->color_c;
 	while (x < WINDOW_WIDTH)
 	{
 		y = 0;
-		color = game->color_c;
 		while (y < WINDOW_HEIGHT)
 		{
-			if (color - (y * 0x000001) > 0)
-				color -= y * 0x000001;
-			if (color - (y * 0x000100) > 0)
-				color -= y * 0x000100;
-			if (color - (y * 0x010000) > 0)
-				color -= y * 0x010000;
 			if (y < WINDOW_HEIGHT / 2)
-				my_mlx_pixel_put(&game->cub3d, x, y, color);
+				my_mlx_pixel_put(&game->cub3d, x, y, get_darkest_color(game->color_c, ((255 / ((float)WINDOW_HEIGHT / 2)) * (float)y)));
 			else
-				my_mlx_pixel_put(&game->cub3d, x, y, game->color_f);
+				my_mlx_pixel_put(&game->cub3d, x, y, get_darkest_color(game->color_f, 255 - ((255 / (WINDOW_HEIGHT / 2)) * (y - ((float)WINDOW_HEIGHT / 2)))));
 			y++;
 		}
 		x++;
@@ -67,9 +85,9 @@ void	get_texx(t_game_instance *game, double wall_dist)
 void	fill_line(t_game_instance *game, int x, int line_height,
 		double wall_dist)
 {
-	int		i;
-	int		start;
-	int		end;
+	int	i;
+	int	start;
+	int	end;
 
 	i = 0;
 	start = -line_height / 2 + WINDOW_HEIGHT / 2;
@@ -82,13 +100,12 @@ void	fill_line(t_game_instance *game, int x, int line_height,
 	game->y_text = 0;
 	while (i + start <= end)
 	{
-		game->y_text = abs(((((start + i) * 256 - WINDOW_HEIGHT * 128 + line_height
-							* 128) * game->tex[game->id].height) / line_height)
-				/ 256);
-		my_mlx_pixel_put(&game->cub3d, x, start + i,
-			my_mlx_get_color(&game->tex[game->id].img, (int)game->x_text
+		game->y_text = abs(((((start + i) * 256 - WINDOW_HEIGHT * 128
+							+ line_height * 128) * game->tex[game->id].height)
+					/ line_height) / 256);
+		my_mlx_pixel_put(&game->cub3d, x, start + i,get_darkest_color(my_mlx_get_color(&game->tex[game->id].img, (int)game->x_text
 				% game->tex[game->id].height, (int)game->y_text
-				% game->tex[game->id].height));
+				% game->tex[game->id].height), 255 - ((255 / (float)WINDOW_HEIGHT) * (float)line_height)));
 		i++;
 	}
 }

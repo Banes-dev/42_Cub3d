@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:55:44 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/13 03:06:40 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:34:18 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	get_color(char *str, t_param *param, char c)
 	int	i;
 	int	r;
 
-	if ((c == 'C' && param->color_c != -1) || (c == 'F' && param->color_f !=
-			-1))
+	if ((c == 'C' && param->color_c != -1)
+		|| (c == 'F' && param->color_f != -1))
 		map_example(param, "double color");
 	i = 0;
 	if (!is_isspace(str[i]))

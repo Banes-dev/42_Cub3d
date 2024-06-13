@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 17:34:01 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/13 03:11:51 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:32:48 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	put_dir(t_game_instance *game, float centrex, float centrey, int lenx)
 		expo = 0;
 		while (expo < (float)(lenx) / 1.2)
 		{
-			my_mlx_pixel_put(&game->miniMap, (int)((float)centrex
+			my_mlx_pixel_put(&game->minimap, (int)((float)centrex
 					+ (game->vector_x * expo)), (int)((float)centrey
 					+ (game->vector_y * expo)), 0xFFFFFF);
 			expo += 0.5;
@@ -45,25 +45,23 @@ void	put_player(t_game_instance *game)
 {
 	int	x;
 	int	y;
-	int	leny;
 	int	lenx;
 	int	centrex;
 	int	centrey;
 
-	leny = MINIMAP_HEIGHT / 15;
 	lenx = MINIMAP_WIDTH / 15;
 	centrex = MINIMAP_WIDTH / 2;
 	centrey = MINIMAP_HEIGHT / 2;
 	put_dir(game, centrex, centrey, lenx);
-	y = centrey - (leny / 2);
-	while (y < centrey + (leny / 2))
+	y = centrey - ((MINIMAP_HEIGHT / 15) / 2);
+	while (y < centrey + ((MINIMAP_HEIGHT / 15) / 2))
 	{
 		x = centrex - (lenx / 2);
 		while (x < centrex + (lenx / 2))
 		{
 			if (((x - centrex) * (x - centrex) + ((centrey - y) * (centrey
-							- y))) < (lenx * leny) / 5)
-				my_mlx_pixel_put(&game->miniMap, x, y, 0xFFFF0000);
+							- y))) < (lenx * (MINIMAP_HEIGHT / 15)) / 5)
+				my_mlx_pixel_put(&game->minimap, x, y, 0xFFFF0000);
 			x++;
 		}
 		y++;
@@ -88,9 +86,9 @@ void	refresh_minimap(t_game_instance *game)
 			if ((int)xmap >= 0 && (int)ymap >= 0 && ft_tab_size(game->map)
 				- 1 >= (int)ymap && (int)ft_strlen(game->map[(int)ymap])
 				- 1 >= (int)xmap && game->map[(int)ymap][(int)xmap] == '1')
-				my_mlx_pixel_put(&game->miniMap, x, y, 0x1b14e4);
+				my_mlx_pixel_put(&game->minimap, x, y, 0x1b14e4);
 			else
-				my_mlx_pixel_put(&game->miniMap, x, y, game->color_f);
+				my_mlx_pixel_put(&game->minimap, x, y, game->color_f);
 			xmap = (game->player_x - 4.0) + ((8.0 / (double)(MINIMAP_WIDTH))
 					* x++);
 		}

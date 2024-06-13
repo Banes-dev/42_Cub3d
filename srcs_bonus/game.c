@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:19:51 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 03:06:16 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 18:48:00 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@ int	ft_check_esc(int key, t_game_instance *game)
 {
 	if (key == ESC)
 		ft_exit_program(game);
-	if (key == RIGHT)
-		game->rt_right = 1;
-	if (key == LEFT)
-		game->rt_left = 1;
 	if (key == W)
 		game->mv_up = 1;
 	if (key == S)
@@ -33,10 +29,6 @@ int	ft_check_esc(int key, t_game_instance *game)
 
 int	key_release(int key, t_game_instance *game)
 {
-	if (key == RIGHT)
-		game->rt_right = 0;
-	if (key == LEFT)
-		game->rt_left = 0;
 	if (key == W)
 		game->mv_up = 0;
 	if (key == S)

@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 03:08:28 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 18:14:41 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int	game_loop(void *ptr)
 {
 	t_game_instance	*game;
+	int				y;
 
 	game = ptr;
+	mlx_mouse_get_pos(game->mlx_ptr, game->win_ptr, &game->mouse_x, &y);
 	move(game);
 	put_floor_celling(game);
 	check_raycasting(game);
@@ -33,8 +35,6 @@ void	game_init(t_game_instance *game)
 	game->mv_up = 0;
 	game->mv_left = 0;
 	game->mv_right = 0;
-	game->rt_left = 0;
-	game->rt_right = 0;
 	game->player_x = 0;
 	game->player_y = 0;
 	game->vector_x = 0;
@@ -70,10 +70,11 @@ void	game(t_param *param)
 			WINDOW_HEIGHT);
 	game.cub3d.data = mlx_get_data_addr(game.cub3d.img_ptr, &game.cub3d.bpp,
 			&game.cub3d.size_l, &game.cub3d.endian);
-	game.miniMap.img_ptr = mlx_new_image(game.mlx_ptr, MINIMAP_WIDTH,
+	game.minimap.img_ptr = mlx_new_image(game.mlx_ptr, MINIMAP_WIDTH,
 			MINIMAP_HEIGHT);
-	game.miniMap.data = mlx_get_data_addr(game.miniMap.img_ptr,
-			&game.miniMap.bpp, &game.miniMap.size_l, &game.miniMap.endian);
+	game.minimap.data = mlx_get_data_addr(game.minimap.img_ptr,
+			&game.minimap.bpp, &game.minimap.size_l, &game.minimap.endian);
+	mlx_mouse_hide(game.mlx_ptr, game.win_ptr);
 	mlx_loop_hook(game.mlx_ptr, game_loop, &game);
 	mlx_loop(game.mlx_ptr);
 }
