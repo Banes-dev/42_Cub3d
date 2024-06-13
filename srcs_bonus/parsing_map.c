@@ -6,11 +6,11 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:09:08 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/12 21:01:57 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 03:06:35 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
 
 void	check_input(t_param *param, int i, int j, char **map)
 {

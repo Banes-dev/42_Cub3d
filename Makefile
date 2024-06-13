@@ -52,15 +52,28 @@ HEADER_LIB = libft/libft.h
 CFLAGS = -g -Wall -Wextra -Werror -lm
 
 # Normal
-NAME = cub3d
+NAME = cub3D
 FUNC = srcs/cub3d.c srcs/error.c srcs/exit.c srcs/game.c srcs/cub3d_utils.c srcs/get_next_line.c srcs/parsing.c srcs/parsing_map.c srcs/parsing_utils.c \
-		srcs/minimap.c srcs/move.c srcs/raycasting.c
+		srcs/move.c srcs/raycasting.c srcs/draw_line.c
 OBJ = $(patsubst srcs/%.c, obj/%.o, $(FUNC))
 
 # Bonus
-NAME_BONUS = cub3d_bonus
-FUNC_BONUS = src_bonus/cub3d.c
-OBJS_BONUS = ${FUNC_BONUS:.c=.o}
+NAME_BONUS = cub3D_bonus
+FUNC_BONUS =	srcs_bonus/cub3d.c\
+				srcs_bonus/cub3d_utils.c\
+				srcs_bonus/draw_line.c\
+				srcs_bonus/error.c\
+				srcs_bonus/exit.c\
+				srcs_bonus/game.c\
+				srcs_bonus/get_next_line.c\
+				srcs_bonus/minimap.c\
+				srcs_bonus/move.c\
+				srcs_bonus/parsing.c\
+				srcs_bonus/parsing_map.c\
+				srcs_bonus/parsing_utils.c\
+				srcs_bonus/raycasting.c\
+
+OBJ_BONUS = $(patsubst srcs_bonus/%.c, obj_bonus/%.o, $(FUNC_BONUS))
 
 # Mlx
 MLX_PATH = ./mlx/
@@ -68,10 +81,13 @@ MLX_FLAGS = -lX11 -lXext
 MLX_LIB = mlx/libmlx_Linux.a
 
 HEADER =	cub3d.h
+HEADER_BONUS = cub3d_bonus.h
 # Compil
 all: 	${NAME}
 
 $(OBJ): ${HEADER} $(HEADER_LIB)
+
+$(OBJ_BONUS): ${HEADER_BONUS} $(HEADER_LIB)
 
 ${NAME}: $(LIBFT) ${OBJ}
 	make -C $(MLX_PATH) --no-print-directory
@@ -79,22 +95,25 @@ ${NAME}: $(LIBFT) ${OBJ}
 
 bonus: 	${NAME_BONUS}
 
-#Libft
+${NAME_BONUS}: $(LIBFT) ${OBJ_BONUS}
+	make -C $(MLX_PATH) --no-print-directory
+	${CC} ${OBJ_BONUS} $(LIBFT) $(MLX_LIB) $(CFLAGS) $(MLX_FLAGS) -o $(NAME_BONUS)
+
 $(LIBFT): $(HEADER_LIB) $(SRCS_L)
 	@echo "\n==> Making LIBFT"
 	make -C ./libft
 
-${NAME_BONUS}: ${OBJS_BONUS}
-	make -C $(MLX_PATH) --no-print-directory
-	${CC} ${CFLAGS} ${OBJS_BONUS} -o ${NAME_BONUS} -L$(MLX_PATH) $(MLX_FLAGS)
+obj_bonus/%.o: srcs_bonus/%.c
+	@mkdir -p obj_bonus/
+	$(CC) $(CFLAGS) -c $< -o $@
 
 obj/%.o: srcs/%.c
 	@mkdir -p obj/
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:	
 	rm -rf obj
-	rm -f ${OBJS_BONUS}
+	rm -rf obj_bonus
 	@make -C ./libft clean
 	@make clean -C ${MLX_PATH} --no-print-directory
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 02:40:14 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 02:37:48 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 
 # define WINDOW_WIDTH 1100 // 960
 # define WINDOW_HEIGHT 994 // 840
+# define MINIMAP_WIDTH WINDOW_WIDTH / 4
+# define MINIMAP_HEIGHT WINDOW_HEIGHT / 4
 
 # define ESPACE '0'
 # define WALL '1'
@@ -135,6 +137,7 @@ typedef struct s_game_instance
 	int					rt_right;
 	int					rt_left;
 	t_tex				tex[4];
+	t_img				miniMap;
 	t_img				cub3d;
 	t_game_resolutions	resolutions_init;
 }	t_game_instance;
@@ -142,6 +145,7 @@ typedef struct s_game_instance
 ///////////
 ////// Functions
 void	game(t_param *param);
+void	refresh_minimap(t_game_instance *game);
 void	ft_init_window(t_game_instance *game_init, t_param *param);
 void	put_floor_celling(t_game_instance *game);
 void	fill_line(t_game_instance *game, int x, int line_height, double wall_dist);
@@ -165,6 +169,7 @@ int		ft_exit_program(t_game_instance *game_init);
 
 //Utils
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void	fusion_img(t_game_instance *game);
 void	simple_del(void *del);
 void	free_tab(char **tab);
 int		my_mlx_get_color(t_img *data, int x, int y);

@@ -6,11 +6,11 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:42:27 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/12 21:00:44 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 03:06:30 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
 
 void	rotate(t_game_instance *game)
 {

@@ -6,11 +6,34 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:51:36 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/13 02:38:15 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 03:05:42 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
+
+void	fusion_img(t_game_instance *game)
+{
+	int	x;
+	int	y;
+	int	ycub;
+
+	x = 0;
+	y = 0;
+	ycub = 0;
+	while (ycub < MINIMAP_HEIGHT)
+	{
+		while (x < MINIMAP_WIDTH)
+		{
+			my_mlx_pixel_put(&game->cub3d, x, ycub,
+				my_mlx_get_color(&game->miniMap, x, y));
+			x++;
+		}
+		x = 0;
+		y++;
+		ycub++;
+	}
+}
 
 int	my_mlx_get_color(t_img *data, int x, int y)
 {

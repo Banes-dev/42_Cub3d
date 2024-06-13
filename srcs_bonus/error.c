@@ -6,11 +6,11 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:37:29 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/12 20:51:49 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 03:06:06 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cub3d_bonus.h"
 
 void	ft_error(int num_error)
 {
