@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 01:54:27 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/13 19:38:57 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 20:31:45 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	put_floor_celling(t_game_instance *game)
 		while (y < WINDOW_HEIGHT)
 		{
 			if (y < WINDOW_HEIGHT / 2)
-				my_mlx_pixel_put(&game->cub3d, x, y, get_darkest_color(game->color_c, ((255 / ((float)WINDOW_HEIGHT / 2)) * (float)y)));
+				my_mlx_pixel_put(&game->cub3d, x, y, get_darkest_color(game->color_c, ((255 / ((float)WINDOW_HEIGHT / 3)) * (float)y)));
 			else
-				my_mlx_pixel_put(&game->cub3d, x, y, get_darkest_color(game->color_f, 255 - ((255 / (WINDOW_HEIGHT / 2)) * (y - ((float)WINDOW_HEIGHT / 2)))));
+				my_mlx_pixel_put(&game->cub3d, x, y, get_darkest_color(game->color_f, 255 - ((255 / ((float)WINDOW_HEIGHT / 1.5)) * ((float)y - ((float)WINDOW_HEIGHT / 1.5)))));
 			y++;
 		}
 		x++;

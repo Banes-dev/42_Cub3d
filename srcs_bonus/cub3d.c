@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 18:14:41 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 20:25:14 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	game_init(t_game_instance *game)
 	game->mv_up = 0;
 	game->mv_left = 0;
 	game->mv_right = 0;
+	game->rt_left = 0;
+	game->rt_right = 0;
 	game->player_x = 0;
 	game->player_y = 0;
 	game->vector_x = 0;

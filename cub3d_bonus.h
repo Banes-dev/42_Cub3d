@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 18:23:23 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/13 20:27:19 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,21 @@
 # define EAST 'E'
 # define WEST 'W'
 
-# define RS 0.001 // vitesse de rotation
+# define RS 0.05 // vitesse de rotation
 # define MS 0.06 // vitesse de deplacement
 # define ESC 65307
 
-// # define W 122
-// # define A 113
-// # define S 115
-// # define D 100
-
-# define W 119
-# define A 97
+# define W 122
+# define A 113
 # define S 115
 # define D 100
+# define LEFT 65361
+# define RIGHT 65363
+
+// # define W 119
+// # define A 97
+// # define S 115
+// # define D 100
 
 // PARSING
 typedef struct s_param
@@ -129,6 +131,8 @@ typedef struct s_game_instance
 	int					mv_down;
 	int					mv_left;
 	int					mv_right;
+	int					rt_right;
+	int					rt_left;
 	int					mouse_x;
 	t_tex				tex[4];
 	t_img				minimap;
