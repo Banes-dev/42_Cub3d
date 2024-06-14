@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 20:27:19 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/14 01:50:32 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "string.h" // fonction string
 # include "unistd.h"
 
-# define WINDOW_WIDTH 1100
+# define WINDOW_WIDTH 1150
 # define WINDOW_HEIGHT 994
 # define MINIMAP_WIDTH 254
 # define MINIMAP_HEIGHT 248
@@ -41,8 +41,8 @@
 # define EAST 'E'
 # define WEST 'W'
 
-# define RS 0.05 // vitesse de rotation
-# define MS 0.06 // vitesse de deplacement
+# define RS 0.1 // vitesse de rotation
+# define MS 0.08 // vitesse de deplacement
 # define ESC 65307
 
 # define W 122

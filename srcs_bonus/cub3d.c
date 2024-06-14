@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 20:25:14 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/14 03:25:35 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	game_loop(void *ptr)
 	game = ptr;
 	mlx_mouse_get_pos(game->mlx_ptr, game->win_ptr, &game->mouse_x, &y);
 	move(game);
+	mlx_mouse_move(game->mlx_ptr, game->win_ptr, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	put_floor_celling(game);
 	check_raycasting(game);
 	refresh_minimap(game);
@@ -76,7 +77,6 @@ void	game(t_param *param)
 			MINIMAP_HEIGHT);
 	game.minimap.data = mlx_get_data_addr(game.minimap.img_ptr,
 			&game.minimap.bpp, &game.minimap.size_l, &game.minimap.endian);
-	mlx_mouse_hide(game.mlx_ptr, game.win_ptr);
 	mlx_loop_hook(game.mlx_ptr, game_loop, &game);
 	mlx_loop(game.mlx_ptr);
 }

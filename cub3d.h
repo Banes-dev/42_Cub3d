@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:19:21 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 17:43:49 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/14 01:50:24 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include "string.h" // fonction string
 # include "unistd.h"
 
-# define WINDOW_WIDTH 1100 // 960
+# define WINDOW_WIDTH 1150 // 960
 # define WINDOW_HEIGHT 994 // 840
 
 # define ESPACE '0'
@@ -43,15 +43,15 @@
 # define MS 0.06 // vitesse de deplacement
 # define ESC 65307
 
-// # define W 122
-// # define A 113
-// # define S 115
-// # define D 100
-
-# define W 119
-# define A 97
+# define W 122
+# define A 113
 # define S 115
 # define D 100
+
+// # define W 119
+// # define A 97
+// # define S 115
+// # define D 100
 # define LEFT 65361
 # define RIGHT 65363
 

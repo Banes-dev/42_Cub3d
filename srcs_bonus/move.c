@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:42:27 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/13 20:27:47 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/14 03:20:44 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	rotate_mouse(t_game_instance *game)
 		game->vector_y = tmp * sin(rs) + game->vector_y * cos(rs);
 		game->plane_x = game->plane_x * cos(rs) - game->plane_y * sin(rs);
 		game->plane_y = tmp_plane * sin(rs) + game->plane_y * cos(rs);
-		mlx_mouse_move(game->mlx_ptr, game->win_ptr, WINDOW_WIDTH / 2,
-			WINDOW_HEIGHT / 2);
+		//mlx_mouse_move(game->mlx_ptr, game->win_ptr, WINDOW_WIDTH / 2,
+		//	WINDOW_HEIGHT / 2);
 	}
 	else if (game->mouse_x < 0)
 	{
@@ -61,8 +61,8 @@ void	rotate_mouse(t_game_instance *game)
 		game->vector_y = tmp * sin(rs) + game->vector_y * cos(rs);
 		game->plane_x = game->plane_x * cos(rs) - game->plane_y * sin(rs);
 		game->plane_y = tmp_plane * sin(rs) + game->plane_y * cos(rs);
-		mlx_mouse_move(game->mlx_ptr, game->win_ptr, WINDOW_WIDTH / 2,
-			WINDOW_HEIGHT / 2);
+		//mlx_mouse_move(game->mlx_ptr, game->win_ptr, WINDOW_WIDTH / 2,
+		//	WINDOW_HEIGHT / 2);
 	}
 }
 

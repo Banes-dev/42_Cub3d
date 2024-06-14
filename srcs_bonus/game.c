@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:19:51 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 20:26:06 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/14 03:01:08 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,9 @@ void	ft_init_window(t_game_instance *game_init, t_param *param)
 	free(param->tex_n);
 	free(param->tex_s);
 	free(param->tex_w);
+	game_init->mouse_x = WINDOW_WIDTH / 2;
+	mlx_mouse_move(game_init->mlx_ptr, game_init->win_ptr, (int)(WINDOW_WIDTH) / 2, (int)(WINDOW_HEIGHT) / 2);
+	mlx_mouse_hide(game_init->mlx_ptr, game_init->win_ptr);
 	mlx_hook(game_init->win_ptr, 17, 0, ft_exit_program, game_init);
 	mlx_hook(game_init->win_ptr, 3, (1L << 1), key_release, game_init);
 	mlx_hook(game_init->win_ptr, 2, (1L << 0), ft_check_esc, game_init);
