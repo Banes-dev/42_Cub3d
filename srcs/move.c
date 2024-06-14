@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 17:42:27 by mminet            #+#    #+#             */
-/*   Updated: 2024/06/12 21:00:44 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/14 14:25:41 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ void	move_side(t_game_instance *game)
 	if (game->mv_right == 1)
 	{
 		if (game->map[(int)(game->player_y)][(int)(game->player_x + vx * MS
-				* 2)] == '0')
+				* 3)] == '0')
 			game->player_x += vx * MS;
 		if (game->map[(int)(game->player_y + vy * MS
-				* 2)][(int)(game->player_x)] == '0')
+				* 3)][(int)(game->player_x)] == '0')
 			game->player_y += vy * MS;
 	}
 	if (game->mv_left == 1)
 	{
 		if (game->map[(int)(game->player_y)][(int)(game->player_x - vx * MS
-				* 2)] == '0')
+				* 3)] == '0')
 			game->player_x -= vx * MS;
 		if (game->map[(int)(game->player_y - vy * MS
-				* 2)][(int)(game->player_x)] == '0')
+				* 3)][(int)(game->player_x)] == '0')
 			game->player_y -= vy * MS;
 	}
 }
@@ -70,19 +70,19 @@ void	move(t_game_instance *game)
 	if (game->mv_up == 1)
 	{
 		if (game->map[(int)(game->player_y)][(int)(game->player_x
-				+ game->vector_x * MS * 2)] == '0')
+				+ game->vector_x * MS * 3)] == '0')
 			game->player_x += game->vector_x * MS;
 		if (game->map[(int)(game->player_y + game->vector_y * MS
-				* 2)][(int)(game->player_x)] == '0')
+				* 3)][(int)(game->player_x)] == '0')
 			game->player_y += game->vector_y * MS;
 	}
 	if (game->mv_down == 1)
 	{
 		if (game->map[(int)(game->player_y)][(int)(game->player_x
-				- game->vector_x * MS * 2)] == '0')
+				- game->vector_x * MS * 3)] == '0')
 			game->player_x -= game->vector_x * MS;
 		if (game->map[(int)(game->player_y - game->vector_y * MS
-				* 2)][(int)(game->player_x)] == '0')
+				* 3)][(int)(game->player_x)] == '0')
 			game->player_y -= game->vector_y * MS;
 	}
 	move_side(game);

@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:14:53 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/14 03:25:35 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/14 13:53:21 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	game_loop(void *ptr)
 	game = ptr;
 	mlx_mouse_get_pos(game->mlx_ptr, game->win_ptr, &game->mouse_x, &y);
 	move(game);
-	mlx_mouse_move(game->mlx_ptr, game->win_ptr, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	put_floor_celling(game);
 	check_raycasting(game);
 	refresh_minimap(game);

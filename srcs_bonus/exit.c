@@ -6,7 +6,7 @@
 /*   By: mminet <mminet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 16:25:16 by ehay              #+#    #+#             */
-/*   Updated: 2024/06/13 16:31:04 by mminet           ###   ########.fr       */
+/*   Updated: 2024/06/14 13:58:12 by mminet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	ft_exit_program(t_game_instance *game_init)
 	mlx_destroy_image(game_init->mlx_ptr, game_init->tex[3].img.img_ptr);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->minimap.img_ptr);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->cub3d.img_ptr);
+	mlx_mouse_show(game_init->mlx_ptr, game_init->win_ptr);
 	mlx_destroy_window(game_init->mlx_ptr, game_init->win_ptr);
 	mlx_destroy_display(game_init->mlx_ptr);
 	free(game_init->mlx_ptr);
